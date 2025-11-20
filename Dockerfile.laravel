@@ -14,10 +14,13 @@ RUN apk update && apk add --no-cache \
     libxml2-dev \
     # Extensions PHP nécessaires
     && docker-php-ext-install pdo_mysql opcache \
+    # Installe les outils pour les dépendances
+    && apk add --no-cache openssl bash \
     # Nettoyage
     && rm -rf /var/cache/apk/*
 
 # Installe Composer
+# Copie la dernière version de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Crée l'utilisateur non-root pour l'exécution de l'application

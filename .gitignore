@@ -1,28 +1,21 @@
-# Ignorer les dépendances Node
 /node_modules
-/frontend/node_modules
-
-# Ignorer les dossiers de build React
-/frontend/dist
-
-# Ignorer les dépendances PHP
 /vendor
-
-# Ignorer les fichiers d'environnement Laravel
-.env
-.env.local
-
-# Ignorer les dossiers de stockage et de cache Laravel
 /storage/*.key
 /public/hot
 /public/storage
-/bootstrap/cache/*.php
-/vendor
-/storage
 /public/build
+/.env
+/.phpunit.result.cache
+/backend/vendor
+/backend/node_modules
+/backend/public/hot
+/backend/public/storage
+/backend/.env
+/frontend/node_modules
+/frontend/dist
 
-# Ignorer les fichiers de logs
-/*.log
-
-# Ignorer les fichiers Docker locaux
-.docker/*
+# Dossiers de conteneurs
+/.vscode-server/
+/.idea/
+/mysql_data/
+/backend/bootstrap/cache/*.php

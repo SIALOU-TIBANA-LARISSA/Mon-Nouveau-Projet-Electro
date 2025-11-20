@@ -11,11 +11,11 @@ services:
         image: laravel-app
         container_name: electro_laravel
         volumes:
-            # Monte le code source dans le conteneur
+            # Monte tout le code source dans le conteneur
             - .:/var/www/html
         ports:
             # Exposition du port PHP pour le débogage si besoin
-            - "9000:9000" 
+            - "9000:9000"
         working_dir: /var/www/html
         depends_on:
             - mysql
@@ -40,7 +40,8 @@ services:
             - "80:80" # Votre site sera accessible sur http://localhost
         volumes:
             - .:/var/www/html
-            - $PWD/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf # Fichier de config
+            # Lie le fichier nginx.conf de la racine au fichier de config interne du conteneur
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf 
         depends_on:
             - laravel
 
@@ -51,7 +52,7 @@ services:
         image: mysql:8.0
         container_name: electro_mysql
         ports:
-            - "3307:3306"
+            - "3307:3306" # CORRECTION: Utilise le port 3307 sur la machine pour éviter le conflit
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-secret}
             MYSQL_DATABASE: electro_db
