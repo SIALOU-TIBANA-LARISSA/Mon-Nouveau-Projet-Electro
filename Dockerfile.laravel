@@ -1,0 +1,34 @@
+# Utilise une image PHP officielle avec FPM pour Nginx
+FROM php:8.2-fpm-alpine
+
+# Arguments
+ARG USER=app
+ARG UID=1000
+
+# Mettre à jour les dépendances et installer les outils nécessaires
+RUN apk update && apk add --no-cache \
+    nginx \
+    git \
+    curl \
+    supervisor \
+    libxml2-dev \
+    # Extensions PHP nécessaires
+    && docker-php-ext-install pdo_mysql opcache \
+    # Nettoyage
+    && rm -rf /var/cache/apk/*
+
+# Installe Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Crée l'utilisateur non-root pour l'exécution de l'application
+RUN adduser -D -u $UID $USER
+RUN chown -R $USER:$USER /var/www/html
+
+# Définition du répertoire de travail
+WORKDIR /var/www/html
+
+# Le conteneur démarrera en tant qu'utilisateur 'app'
+USER $USER
+
+# Commande de démarrage par défaut (FPM)
+CMD ["php-fpm"]

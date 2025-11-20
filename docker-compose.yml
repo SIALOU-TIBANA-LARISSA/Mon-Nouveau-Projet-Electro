@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+    # ----------------------------------
+    # 1. Service Laravel (PHP/Backend)
+    # ----------------------------------
+    laravel:
+        build:
+            context: .
+            dockerfile: Dockerfile.laravel
+        image: laravel-app
+        container_name: electro_laravel
+        volumes:
+            # Monte le code source dans le conteneur
+            - .:/var/www/html
+        ports:
+            # Exposition du port PHP pour le débogage si besoin
+            - "9000:9000" 
+        working_dir: /var/www/html
+        depends_on:
+            - mysql
+            - redis
+        environment:
+            # Configuration de la BDD pour Laravel
+            DB_CONNECTION: mysql
+            DB_HOST: mysql
+            DB_PORT: 3306
+            DB_DATABASE: electro_db
+            DB_USERNAME: root
+            DB_PASSWORD: ${DB_ROOT_PASSWORD:-secret}
+            REDIS_HOST: redis
+
+    # ----------------------------------
+    # 2. Service Nginx (Serveur Web)
+    # ----------------------------------
+    nginx:
+        image: nginx:stable-alpine
+        container_name: electro_nginx
+        ports:
+            - "80:80" # Votre site sera accessible sur http://localhost
+        volumes:
+            - .:/var/www/html
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf # Fichier de config
+        depends_on:
+            - laravel
+
+    # ----------------------------------
+    # 3. Service MySQL (Base de données)
+    # ----------------------------------
+    mysql:
+        image: mysql:8.0
+        container_name: electro_mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-secret}
+            MYSQL_DATABASE: electro_db
+        volumes:
+            - mysql_data:/var/lib/mysql
+
+    # ----------------------------------
+    # 4. Service Redis (Cache et Files d'attente)
+    # ----------------------------------
+    redis:
+        image: redis:alpine
+        container_name: electro_redis
+        ports:
+            - "6379:6379"
+
+volumes:
+    mysql_data:
