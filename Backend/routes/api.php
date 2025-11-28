@@ -30,4 +30,5 @@ Route::middleware('auth:sanctum')->group(function () {
 // La route /user par défaut de Laravel peut être retirée ou laissée
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
+// TEST COMMIT
 // });
