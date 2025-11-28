@@ -2,24 +2,25 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\UserSeeder; 
+use Database\Seeders\CategorySeeder; // ⬅️ IMPORT DE LA NOUVELLE CLASSE
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Tous les seeders DOIVENT être dans ce tableau [], séparés par des virgules.
+        $this->call([
+            RoleSeeder::class,     // 1. Rôles (doit être fait en premier)
+            UserSeeder::class,     // 2. Utilisateurs (dépend des rôles)
+            CategorySeeder::class, // 3. Catégories (AJOUTÉ ICI)
+            
+            // Les produits, commandes, etc., viendront plus tard...
         ]);
     }
 }

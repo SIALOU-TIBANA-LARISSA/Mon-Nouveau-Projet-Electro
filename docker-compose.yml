@@ -10,9 +10,10 @@ services:
             dockerfile: Dockerfile.laravel
         image: laravel-app
         container_name: electro_laravel
+        user: "1000"
         volumes:
             # Monte tout le code source dans le conteneur
-            - .:/var/www/html
+            - ./backend:/var/www/html
         ports:
             # Exposition du port PHP pour le débogage si besoin
             - "9000:9000"
