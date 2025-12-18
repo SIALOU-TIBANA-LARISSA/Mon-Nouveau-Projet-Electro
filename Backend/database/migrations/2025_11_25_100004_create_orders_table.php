@@ -8,27 +8,27 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     * Table des commandes clients.
      */
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            // ➡️ LIEN VERS L'UTILISATEUR QUI A PASSÉ LA COMMANDE ⬅️
+            // ➡️ LIEN VERS L'UTILISATEUR QUI PASSE LA COMMANDE
             $table->foreignId('user_id')->constrained('users')->onDelete('restrict');
 
-            // Détails financiers de la commande
-            $table->decimal('total_amount', 10, 2); // Montant total final de la commande
-            $table->string('status')->default('pending'); // Statut: pending, processing, shipped, delivered, cancelled
+            // Détails financiers
+            $table->decimal('total_amount', 10, 2);
+            $table->string('status')->default('pending');
 
-            // Informations de livraison
-            $table->text('shipping_address');
-            $table->string('shipping_city');
-            $table->string('shipping_zip');
-            $table->string('shipping_country');
+            // Informations de livraison — RENDUES NULLABLES
+            $table->text('shipping_address')->nullable();
+            $table->string('shipping_city')->nullable();
+            $table->string('shipping_zip')->nullable();
+            $table->string('shipping_country')->nullable();
+            $table->string('payment_session_id')->nullable();
 
-            // Numéro de référence unique de la commande (pour le client)
+            // Numéro de commande unique
             $table->string('reference_number')->unique();
 
             $table->timestamps();

@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,     // 1. Rôles (doit être fait en premier)
             UserSeeder::class,     // 2. Utilisateurs (dépend des rôles)
-            CategorySeeder::class, // 3. Catégories (AJOUTÉ ICI)
+            CategorySeeder::class, // 3. Catégories (AJOUTÉ ICI)//
+            ProductSeeder::class,
             
             // Les produits, commandes, etc., viendront plus tard...
         ]);
