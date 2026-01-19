@@ -2,105 +2,314 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') - Electro V2</title>
+    <title>H-ELECTRO — Impression & personnalisation</title>
 
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
+<body class="bg-gray-100 text-base md:text-lg">
 
-<body class="bg-gray-100 text-gray-900">
 
-<!-- ================= HEADER UNIQUE ================= -->
 <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
 
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+        <!-- LOGO -->
+        <span class="text-xl font-bold text-orange-600">
+          H-ELECTRO
+        </span>
+        <span class="block text-sm text-gray-500">
+           Impression & personnalisation
+         </span>
 
-        <!-- Logo -->
-        <a href="/" class="text-2xl font-bold text-orange-500">
-            HELECTRO
+
+        <!-- MENU PRINCIPAL -->
+        <nav class="flex items-center gap-6 text-sm font-semibold">
+
+            <a href="/" class="hover:text-orange-500">Accueil</a>
+
+            <a href="/catalogue" class="hover:text-orange-500">Catalogue</a>
+
+            <a href="/cart" class="hover:text-orange-500">🛒 Panier</a>
+
+
+            <!-- UTILISATEUR NON CONNECTÉ -->
+@guest
+<div id="guestMenu" class="relative">
+
+    <button
+        id="loginToggle"
+        class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+        Se connecter
+    </button>
+
+    <div
+        id="loginMenu"
+        class="absolute right-0 mt-2 w-48 bg-white shadow rounded hidden z-50">
+
+        <a href="/login" class="block px-4 py-2 hover:bg-orange-50">
+            Se connecter
         </a>
 
-        <!-- BARRE DE RECHERCHE LIVE -->
-<div class="flex-1 mx-6">
-    <input
-        type="text"
-        id="search-input"
-        placeholder="Rechercher un produit, une marque..."
-        class="w-full border border-gray-300 rounded px-4 py-2
-               focus:outline-none focus:ring-2 focus:ring-orange-500"
-    >
+        <a href="/register" class="block px-4 py-2 hover:bg-orange-50">
+            Créer un compte
+        </a>
+    </div>
+
+</div>
+@endguest
+ 
+
+<!-- UTILISATEUR CONNECTÉ (via localStorage) -->
+<div id="userMenu" class="relative hidden relative group">
+
+    <button class="flex items-center gap-2 hover:text-orange-500">
+        👤 <span id="userName"></span>
+    </button>
+
+    <div id="userDropdown" class="absolute right-0 mt-2 w-56 bg-white shadow rounded hidden z-50">
+
+        <a href="/account" class="block px-4 py-2 hover:bg-orange-50">
+            Votre compte
+        </a>
+
+        <a href="/my-orders"
+   class="block px-4 py-2 hover:bg-orange-50">
+    Vos commandes
+</a>
+
+
+        <button
+            id="logoutBtn"
+            class="w-full text-left px-4 py-2 hover:bg-orange-50 text-red-600">
+            Se déconnecter
+        </button>
+    </div>
+
 </div>
 
-
-
-        <!-- Navigation principale -->
-        <nav class="flex items-center gap-6 font-medium">
-
-            <a href="/" class="hover:text-orange-600">Accueil</a>
-            <a href="/catalogue" class="hover:text-orange-600">Catalogue</a>
-            <a href="/panier" class="hover:text-orange-600">Panier</a>
-
-            <!-- Menu Se connecter -->
-            <div class="relative group">
-                <button class="flex items-center gap-1 hover:text-orange-600">
-                    👤 Se connecter
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-
-                <div class="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg p-4
-                            hidden group-hover:block z-50">
-
-                    <a href="/connexion"
-                       class="block w-full text-center bg-orange-500 text-white py-2 rounded mb-3 font-semibold hover:bg-orange-600">
-                        SE CONNECTER
-                    </a>
-
-                    <a href="/inscription"
-                       class="block w-full text-center border border-gray-300 py-2 rounded mb-4 font-semibold hover:bg-gray-100">
-                        CRÉER UN COMPTE
-                    </a>
-
-                    <hr class="mb-3">
-
-                    <a href="#" class="block py-2 hover:text-orange-600">👤 Votre compte</a>
-                    <a href="#" class="block py-2 hover:text-orange-600">🛒 Vos commandes</a>
-                    <a href="#" class="block py-2 hover:text-orange-600">❤️ Liste d’envies</a>
-                </div>
-            </div>
-
         </nav>
+
     </div>
 </header>
-<!-- ================= FIN HEADER ================= -->
 
-<!-- Messages flash -->
-@if(session('success'))
-    <div class="bg-green-200 text-green-800 p-3 mb-4 rounded text-center">
-        {{ session('success') }}
-    </div>
-@endif
 
-@if(session('error'))
-    <div class="bg-red-200 text-red-800 p-3 mb-4 rounded text-center">
-        {{ session('error') }}
-    </div>
-@endif
-
-<!-- Contenu -->
-<main class="max-w-7xl mx-auto py-8 px-4">
+<main class="py-6">
     @yield('content')
 </main>
 
-<footer class="text-center py-4 text-gray-500">
-    © 2025 Electro V2
-</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("search-input");
+    const container = document.getElementById("products-container");
 
-<script src="/js/cart.js"></script>
-<script src="/js/search.js"></script>
+    if (!input || !container) return;
+
+    let timeout = null;
+
+    input.addEventListener("keyup", () => {
+        clearTimeout(timeout);
+        const query = input.value.trim();
+
+        if (query.length < 1) {
+            return;
+        }
+
+        timeout = setTimeout(() => {
+            fetch(`/api/products/search?q=${encodeURIComponent(query)}`)
+
+
+                .then(res => res.json())
+                .then(response => {
+
+                    const products = response.data;
+
+                    container.innerHTML = "";
+
+                    if (!products || products.length === 0) {
+                        container.innerHTML = `
+                            <p class="text-gray-500 col-span-full">
+                                Aucun produit trouvé
+                            </p>`;
+                        return;
+                    }
+
+                    products.forEach(product => {
+                        container.innerHTML += `
+    <div class="bg-white shadow rounded-lg overflow-hidden">
+            <img src="{{ url('/') }}/${product.main_image_url}"
+     class="w-full h-40 object-cover"
+     alt="${product.name}">
+
+
+
+        <div class="p-4">
+            <h2 class="font-semibold text-sm">
+                ${product.name}
+            </h2>
+
+            <div class="mt-2 font-bold text-orange-500">
+                ${Number(product.price).toLocaleString()} FCFA
+            </div>
+
+            <a href="/products/${product.id}"
+               class="mt-3 block text-center bg-orange-500 text-white py-2 rounded hover:bg-orange-600">
+                Voir détails
+            </a>
+
+            <button
+                class="mt-2 w-full bg-gray-200 py-2 rounded hover:bg-gray-300 add-to-cart"
+                data-id="${product.id}"
+                data-name="${product.name}"
+                data-price="${product.price}"
+                data-image="http://127.0.0.1:8001/${product.main_image_url}">
+                Ajouter au panier
+            </button>
+        </div>
+    </div>
+`;
+
+});
+
+                            
+                })
+                .catch(err => {
+                    console.error("Erreur recherche :", err);
+                });
+        }, 300);
+    });
+});
+</script>
+
+
+<!-- ========================= -->
+<!-- 1️⃣ PANIER (DOIT ÊTRE 1ER) -->
+<!-- ========================= -->
+<script src="{{ asset('js/cart.js') }}"></script>
+
+<!-- ========================= -->
+<!-- 2️⃣ MENU CONNEXION -->
+<!-- ========================= -->
+<script>
+document.addEventListener('click', function (e) {
+    const toggle = document.getElementById('loginToggle');
+    const menu = document.getElementById('loginMenu');
+
+    if (!toggle || !menu) return;
+
+    if (toggle.contains(e.target)) {
+        menu.classList.toggle('hidden');
+        return;
+    }
+
+    if (!menu.contains(e.target)) {
+        menu.classList.add('hidden');
+    }
+});
+</script>
+
+<!-- ========================= -->
+<!-- 3️⃣ LOGOUT -->
+<!-- ========================= -->
+<script>
+document.addEventListener('click', function (e) {
+    if (!e.target.matches('#logoutBtn')) return;
+
+    const token = localStorage.getItem('auth_token');
+
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('user');
+
+    if (token) {
+        fetch('/api/auth/logout', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json'
+            }
+        }).catch(() => {});
+    }
+
+    window.location.href = '/';
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const guestMenu = document.getElementById("guestMenu");
+    const userMenu  = document.getElementById("userMenu");
+    const userName  = document.getElementById("userName");
+    const dropdown  = document.getElementById("userDropdown");
+
+    if (user && userMenu && userName) {
+        userName.textContent = user.name;
+        userMenu.classList.remove("hidden");
+        if (guestMenu) guestMenu.classList.add("hidden");
+    }
+
+    // Toggle menu au clic sur "Client Test"
+    userMenu?.querySelector("button")?.addEventListener("click", () => {
+        dropdown.classList.toggle("hidden");
+    });
+
+    // Fermer si clic ailleurs
+    document.addEventListener("click", (e) => {
+        if (!userMenu.contains(e.target)) {
+            dropdown.classList.add("hidden");
+        }
+    });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const user = localStorage.getItem("user");
+
+    const protectedPages = ["/account", "/my-orders"];
+
+    const currentPath = window.location.pathname;
+
+    if (protectedPages.includes(currentPath) && !user) {
+        window.location.href = "/login";
+    }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    function typeWriter(element, speed) {
+        const text = element.textContent;
+        element.textContent = "";
+        let i = 0;
+
+        function write() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(write, speed);
+            }
+        }
+
+        write();
+    }
+
+    const title = document.getElementById("hero-title");
+    const text  = document.getElementById("hero-text");
+
+    if (title) {
+        typeWriter(title, 80);
+
+        setTimeout(() => {
+            if (text) typeWriter(text, 30);
+        }, 1200);
+    }
+
+});
+</script>
 
 </body>
 </html>

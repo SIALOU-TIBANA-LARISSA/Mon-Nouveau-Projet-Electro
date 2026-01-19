@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Product;
+
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\Http;
+
 
 class ProductController extends Controller
 {
@@ -31,17 +34,17 @@ class ProductController extends Controller
      */
     public function show($id_or_slug)
     {
-        $product = Product::where('id', $id_or_slug)
-            ->orWhere('slug', $id_or_slug)
-            ->with('category:id,name,slug')
-            ->first();
+        $response = Http::get("http://127.0.0.1:8001/api/products/{$id_or_slug}");
 
-        if (!$product) {
-            return response()->json(['message' => 'Produit introuvable'], 404);
+        if ($response->failed()) {
+            abort(404);
         }
 
-        return response()->json($product);
+        $product = $response->json();
+
+        return view('products.show', compact('product'));
     }
+
 
     /**
      * GET /api/products/search?q=mot
@@ -183,4 +186,3 @@ public function destroy(Request $request, $id)
 }
 
 }
-

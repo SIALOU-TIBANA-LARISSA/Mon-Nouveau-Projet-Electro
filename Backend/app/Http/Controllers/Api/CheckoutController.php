@@ -15,6 +15,10 @@ class CheckoutController extends Controller
 {
     public function process(Request $request)
     {
+
+        \Log::info('CHECKOUT DATA', $request->all());
+
+
         // 1. Validation des données envoyées par le frontend
         $data = $request->validate([
             'firstname' => 'required|string',
@@ -34,10 +38,12 @@ class CheckoutController extends Controller
             $password = Str::random(8);
 
             $user = User::create([
-                'name' => $data['firstname'] . ' ' . $data['lastname'],
-                'email' => $data['email'],
-                'password' => Hash::make($password),
-            ]);
+    'name' => $data['firstname'] . ' ' . $data['lastname'],
+    'email' => $data['email'],
+    'password' => Hash::make($password),
+    'role_id' => 2, // client
+]);
+
 
             $isNewUser = true;
 
@@ -68,10 +74,12 @@ Merci pour votre achat !
 
         // 6. Création de la commande
         $order = Order::create([
-            'user_id' => $user->id,
-            'total_amount' => $total,
-            'status' => 'pending',
-        ]);
+    'user_id' => $user->id,
+    'reference_number' => 'CMD-' . strtoupper(uniqid()),
+    'total_amount' => $total,
+    'status' => 'pending',
+]);
+
 
         // 7. Enregistrement de chaque item
         foreach ($data['cart'] as $item) {
@@ -86,8 +94,7 @@ Merci pour votre achat !
         // 8. Retourner l’URL de paiement (exemple générique)
         return response()->json([
             'message' => 'Commande créée avec succès',
-            'order_id' => $order->id,
-            'payment_url' => "https://paiement.electrov2.com?order_id={$order->id}"
+            'order_id' => $order->id
         ]);
     }
 }

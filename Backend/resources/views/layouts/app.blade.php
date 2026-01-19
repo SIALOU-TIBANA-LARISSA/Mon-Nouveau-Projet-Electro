@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') - Electro V2</title>
+    <title>@yield('title') - H-Electro</title>
 
     <!-- Tailwind depuis CDN (simple et rapide) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,10 +13,10 @@
 
     <!-- Barre de navigation simple -->
     <nav class="bg-white shadow px-6 py-4 flex justify-between">
-        <div class="text-2xl font-bold text-indigo-600">Electro V2</div>
+        <div class="text-2xl font-bold text-orange-500">H-Electro</div>
         <div class="space-x-4">
-            <a href="/" class="hover:text-indigo-500">Accueil</a>
-            <a href="/catalogue" class="hover:text-indigo-500">Catalogue</a>
+            <a href="/" class="hover:text-orange-500">Accueil</a>
+            <a href="/catalogue" class="hover:text-orange-500">Catalogue</a>
         </div>
     </nav>
 
@@ -26,7 +26,7 @@
     </main>
 
     <footer class="text-center py-4 text-gray-500">
-        © 2025 Electro V2 — Laravel Blade
+        © 2025 H-Electro — Laravel Blade
     </footer>
 
 </body>

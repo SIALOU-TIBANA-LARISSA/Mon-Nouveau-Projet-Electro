@@ -1,0 +1,43 @@
+# Image PHP avec Apache
+FROM php:8.2-apache
+
+# Installer dépendances système
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    curl \
+    && docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath gd
+
+# Activer mod_rewrite (Laravel)
+RUN a2enmod rewrite
+
+# Définir le dossier de travail
+WORKDIR /var/www/html
+
+# Copier le projet
+COPY . .
+
+# Installer Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Installer dépendances Laravel
+RUN composer install --no-dev --optimize-autoloader
+
+# Donner les permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache
+
+# Config Apache pour Laravel
+RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+
+# Exposer le port
+EXPOSE 80
+
+# Lancer Apache
+CMD ["apache2-foreground"]

@@ -14,61 +14,49 @@ class AuthController extends Controller
      * Enregistre un nouvel utilisateur (avec le rôle par défaut 'Opérateur').
      */
     public function register(Request $request): JsonResponse
-    {
-        try {
-            // Valider les données reçues
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8|confirmed', // 'confirmed' vérifie password_confirmation
-            ]);
+{
+    try {
+        // ✅ Validation des données
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-            // Trouver l'ID du rôle 'Opérateur' (rôle par défaut pour les nouveaux utilisateurs)
-            $operatorRole = \App\Models\Role::where('name', 'Opérateur')->first();
+        // ✅ Création de l'utilisateur
+        // ✅ Création de l'utilisateur AVEC rôle Client
+$user = User::create([
+    'name' => $validated['name'],
+    'email' => $validated['email'],
+    'password' => Hash::make($validated['password']),
+    'role_id' => 2, // 👈 rôle Client
+]);
 
-            if (!$operatorRole) {
-                return response()->json([
-                    'message' => 'Rôle "Opérateur" non trouvé. Veuillez vérifier les seeders.',
-                ], 500);
-            }
+        // ✅ (Optionnel mais PRO) Création du token
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-            // Créer l'utilisateur
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role_id' => $operatorRole->id, // Assigner le rôle Opérateur
-            ]);
+        // ✅ Réponse JSON propre
+        return response()->json([
+            'message' => 'Compte créé avec succès',
+            'user' => $user,
+            'token' => $token,
+        ], 201);
 
-            // Générer un token pour l'utilisateur
-            // Le token est un identifiant unique qui sera utilisé pour les requêtes API (voir M2)
-            $token = $user->createToken('auth_token')->plainTextToken;
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        // ❌ Erreurs de validation claires
+        return response()->json([
+            'message' => 'Erreur de validation',
+            'errors' => $e->errors(),
+        ], 422);
 
-            return response()->json([
-                'message' => 'Utilisateur créé avec succès.',
-                'user' => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'role' => $user->role->name, // Afficher le nom du rôle
-                ],
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-            ], 201);
-
-        } catch (ValidationException $e) {
-            return response()->json([
-                'message' => 'Erreur de validation.',
-                'errors' => $e->errors(),
-            ], 422);
-        } catch (\Exception $e) {
-             // En cas d'erreur inattendue (ex: problème de base de données)
-            return response()->json([
-                'message' => 'Erreur lors de l\'enregistrement.',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
+    } catch (\Exception $e) {
+        // ❌ Erreur serveur
+        return response()->json([
+            'message' => 'Erreur serveur',
+            'error' => $e->getMessage(),
+        ], 500);
     }
+}
 
     /**
      * Connecte un utilisateur existant.
@@ -90,6 +78,16 @@ class AuthController extends Controller
                     'message' => 'Identifiants invalides.',
                 ], 401);
             }
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    return response()->json([
+    'token' => $token,
+    'user' => [
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+    ]
+    ]);
 
             // Supprimer tous les anciens tokens de l'utilisateur pour la sécurité
             $user->tokens()->delete();

@@ -91,18 +91,22 @@ class OrderController extends Controller
     /**
      * Afficher une commande spécifique
      */
-    public function showOrder($id)
-    {
-        $order = Order::with('items.product')->find($id);
+    public function showOrder(Request $request, $id)
+{
+    $order = Order::where('id', $id)
+        ->where('user_id', $request->user()->id)
+        ->with('items.product')
+        ->first();
 
-        if (!$order) {
-            return response()->json([
-                'message' => 'Commande introuvable.'
-            ], 404);
-        }
-
-        return response()->json($order);
+    if (!$order) {
+        return response()->json([
+            'message' => 'Commande introuvable.'
+        ], 404);
     }
+
+    return response()->json($order);
+}
+
 public function adminListOrders(Request $request)
 {
     if ($request->user()->role->name !== 'Admin') {

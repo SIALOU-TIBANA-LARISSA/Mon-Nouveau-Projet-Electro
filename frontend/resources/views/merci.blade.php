@@ -5,7 +5,7 @@
 @section('content')
 <div class="max-w-3xl mx-auto bg-white shadow p-8 rounded-lg text-center mt-10">
 
-    <h1 class="text-4xl font-bold text-indigo-600 mb-6">
+    <h1 class="text-4xl font-bold text-orange-600 mb-6">
         🎉 Merci pour votre commande !
     </h1>
 
@@ -14,7 +14,7 @@
     </p>
 
     <a href="/catalogue"
-       class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700">
+       class="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-500">
         Retour au catalogue
     </a>
 

@@ -48,24 +48,27 @@ class ProductController extends Controller
      * Recherche de produits (par nom et description).
      */
     public function search(Request $request)
-    {
-        $query = $request->query('q', '');
+{
+    $query = $request->query('q', '');
 
-        if (empty($query)) {
-            return response()->json(['message' => 'Veuillez fournir un mot-clé pour la recherche.'], 400);
-        }
-
-        $products = Product::where('is_published', true)
-            ->where(function($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%")
-                  ->orWhere('description', 'LIKE', "%{$query}%");
-            })
-            ->select('id','name','slug','price','main_image_url','sku','stock_quantity')
-            ->orderBy('name')
-            ->paginate(12);
-
-        return response()->json($products);
+    if (empty($query)) {
+        return response()->json(['message' => 'Veuillez fournir un mot-clé pour la recherche.'], 400);
     }
+
+    $perPage = (int) $request->query('per_page', 12);
+
+    $products = Product::where('is_published', true)
+        ->where(function($q) use ($query) {
+            $q->where('name', 'LIKE', "%{$query}%")
+              ->orWhere('description', 'LIKE', "%{$query}%");
+        })
+        ->select('id','name','slug','price','main_image_url','sku','stock_quantity')
+        ->orderBy('name')
+        ->paginate($perPage);
+
+    return response()->json($products);
+}
+
     /**
  * Ajouter un nouveau produit (ADMIN)
  */

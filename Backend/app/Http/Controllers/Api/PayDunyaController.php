@@ -10,164 +10,146 @@ use App\Models\Payment;
 
 class PayDunyaController extends Controller
 {
-    private $baseUrl;
+    private string $baseUrl;
 
     public function __construct()
     {
-        // Sandbox
-        $this->baseUrl = env('PAYDUNYA_API_URL', 'https://app.paydunya.com/api/v1');
+        $this->baseUrl = env('PAYDUNYA_API_URL', 'https://app.paydunya.com/sandbox-api/v1');
     }
 
     /**
-     * 1) CREER UNE FACTURE / CHECKOUT PAYDUNYA
+     * ==============================
+     * PAYDUNYA PAR (BROWSER PAYMENT)
+     * ==============================
+     * Cette méthode OUVRE PayDunya
+     * dans le navigateur
      */
-    public function createInvoice(Request $request)
+    public function createParPayment()
     {
-        \Log::info('MASTER KEY ENVOYÉE', [
-    'master_key' => config('services.paydunya.master_key')
-]);
-
-        $user = $request->user();
-
-        // Récupérer la dernière commande non payée
-        $order = Order::where('user_id', $user->id)->where('status', 'pending')->latest()->first();
+        // 🔎 Récupérer la dernière commande en attente
+        $order = Order::where('status', 'pending')->latest()->first();
 
         if (!$order) {
-            return response()->json(['message' => 'Aucune commande en attente de paiement.'], 404);
+            return response()->json([
+                'message' => 'Aucune commande en attente'
+            ], 404);
         }
 
-        $transaction_id = uniqid('TXN_');
-
-        // Données envoyées à PayDunya
+        // 🧾 Payload PayDunya PAR
         $payload = [
             "invoice" => [
                 "total_amount" => (float) $order->total_amount,
-                "description"  => "Paiement de la commande : " . $order->reference_number,
-                "items" => []
+                "description" => "Paiement commande #" . $order->id,
             ],
             "store" => [
                 "name" => "Electro V2",
                 "phone" => "+22500000000"
             ],
             "actions" => [
-                "cancel_url" => url('/paydunya/fail'),
-                "return_url" => url('/paydunya/success'),
-                "callback_url" => url('/paydunya/ipn')
+                "return_url" => url('/api/paydunya/success'),
+                "cancel_url" => url('/api/paydunya/fail'),
+                "callback_url" => url('/api/paydunya/ipn'),
             ],
             "custom_data" => [
-                "order_id" => $order->id,
-                "transaction_id" => $transaction_id
+                "order_id" => $order->id
             ]
         ];
 
-        // Appel API PayDunya
+        // 📡 Appel API PayDunya
         $response = Http::withHeaders([
-            'PAYDUNYA-MASTER-KEY' => env('PAYDUNYA_MASTER_KEY'),
-            'PAYDUNYA-PRIVATE-KEY' => env('PAYDUNYA_PRIVATE_KEY'),
-            'PAYDUNYA-TOKEN' => env('PAYDUNYA_TOKEN'),
-            'Content-Type' => 'application/json'
-        ])->post($this->baseUrl . "/checkout-invoice/create", $payload);
-
-        if ($response->failed()) {
-            return response()->json([
-                "message" => "Erreur PayDunya",
-                "error" => $response->body()
-            ], 500);
-        }
+            'PAYDUNYA-MASTER-KEY' => config('services.paydunya.master_key'),
+            'PAYDUNYA-PRIVATE-KEY' => config('services.paydunya.private_key'),
+            'PAYDUNYA-TOKEN' => config('services.paydunya.token'),
+            'Content-Type' => 'application/json',
+        ])->post(
+                $this->baseUrl . '/checkout-invoice/create',
+                $payload
+            );
 
         $data = $response->json();
 
-        if (!isset($data["response_code"]) || $data["response_code"] != "00") {
+        // ❌ Erreur PayDunya
+        if (!isset($data['response_code']) || $data['response_code'] !== '00') {
             return response()->json([
-                "message" => "Erreur lors de la création de la facture.",
-                "error" => $data
+                'message' => 'Erreur PayDunya PAR',
+                'error' => $data
             ], 500);
         }
 
-        // Retourner l'URL de paiement
-        return response()->json([
-            "checkout_url" => $data["response_text"],
-            "invoice_token" => $data["invoice_token"],
-            "transaction_id" => $transaction_id
-        ]);
+        // ✅ REDIRECTION NAVIGATEUR PAYDUNYA
+        return redirect()->away($data['response_text']);
     }
 
     /**
-     * 2) CALLBACK IPN — PayDunya appelle AUTOMATIQUEMENT ce endpoint
+     * ==============================
+     * IPN PAYDUNYA (CALLBACK SERVEUR)
+     * ==============================
      */
     public function ipn(Request $request)
     {
-        $invoice_token = $request->input("invoice_token");
+        $invoice_token = $request->input('invoice_token');
 
         if (!$invoice_token) {
-            return response("invoice_token manquant", 400);
+            return response('invoice_token manquant', 400);
         }
 
-        // Vérification de la transaction
         $verify = Http::withHeaders([
-            'PAYDUNYA-MASTER-KEY' => env('PAYDUNYA_MASTER_KEY'),
-            'PAYDUNYA-PRIVATE-KEY' => env('PAYDUNYA_PRIVATE_KEY'),
-            'PAYDUNYA-TOKEN' => env('PAYDUNYA_TOKEN'),
-        ])->get($this->baseUrl . "/checkout-invoice/confirm/" . $invoice_token);
+            'PAYDUNYA-MASTER-KEY' => config('services.paydunya.master_key'),
+            'PAYDUNYA-PRIVATE-KEY' => config('services.paydunya.private_key'),
+            'PAYDUNYA-TOKEN' => config('services.paydunya.token'),
+        ])->get($this->baseUrl . '/checkout-invoice/confirm/' . $invoice_token);
 
         $data = $verify->json();
 
-        if (!isset($data["response_code"])) {
-            return response("Réponse invalide PayDunya", 400);
+        if (!isset($data['response_code'])) {
+            return response('Réponse invalide PayDunya', 400);
         }
 
-        // Récupérer l'order_id qu'on avait mis dans custom_data
-        $order_id = $data["custom_data"]["order_id"] ?? null;
+        $order_id = $data['custom_data']['order_id'] ?? null;
 
         if (!$order_id) {
-            return response("order_id non trouvé", 400);
+            return response('order_id manquant', 400);
         }
 
         $order = Order::find($order_id);
 
         if (!$order) {
-            return response("Commande introuvable", 404);
+            return response('Commande introuvable', 404);
         }
 
-        // Si response_code = 00 → succès du paiement
-        if ($data["response_code"] == "00") {
+        if ($data['response_code'] === '00') {
 
-            // Mettre à jour commande
-            $order->update([
-                "status" => "paid"
-            ]);
+            $order->update(['status' => 'paid']);
 
-            // Créer entrée dans la table payments
             Payment::create([
-                "order_id" => $order->id,
-                "transaction_id" => $data["transaction_id"],
-                "amount" => $order->total_amount,
-                "currency" => "XOF",
-                "payment_method" => $data["payment_method"] ?? "mobile_money",
-                "status" => "succeeded",
-                "meta" => json_encode($data)
+                'order_id' => $order->id,
+                'transaction_id' => $data['transaction_id'] ?? null,
+                'amount' => $order->total_amount,
+                'currency' => 'XOF',
+                'payment_method' => $data['payment_method'] ?? 'mobile_money',
+                'status' => 'succeeded',
+                'meta' => json_encode($data),
             ]);
 
-            return response("SUCCESS", 200);
+            return response('SUCCESS', 200);
         }
 
-        return response("FAILED", 400);
+        return response('FAILED', 400);
     }
 
     /**
-     * 3) REDIRECTION SUCCESS (navigateur)
+     * ==============================
+     * REDIRECTIONS NAVIGATEUR
+     * ==============================
      */
     public function success()
     {
-        return "Paiement PayDunya réussi 🎉";
+        return 'Paiement PayDunya réussi 🎉';
     }
 
-    /**
-     * 4) REDIRECTION FAIL (navigateur)
-     */
     public function fail()
     {
-        return "Paiement PayDunya annulé ❌";
+        return 'Paiement PayDunya annulé ❌';
     }
 }
 
