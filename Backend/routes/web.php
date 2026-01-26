@@ -12,7 +12,6 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\OrderController;
 
 
-
 Route::get('/', function () {
     return view('home');
 });
