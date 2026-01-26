@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder; 
 use Database\Seeders\CategorySeeder; // ⬅️ IMPORT DE LA NOUVELLE CLASSE
+use Database\Seeders\ProductSeeder;
 
 class DatabaseSeeder extends Seeder
 {
