@@ -21,7 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/catalogue', function () {
-    return view('catalogue');
+    return view('catalog');
+
 });
 
 Route::get('/cart', function () {
