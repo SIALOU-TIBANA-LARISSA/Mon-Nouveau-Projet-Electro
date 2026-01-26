@@ -22,7 +22,7 @@ public function catalogue(Request $request)
     }
 
     // ✅ ON PREND UNIQUEMENT "data"
-    $products = $response->json('data');
+    $products = collect($response->json('data'));
 
     return view('catalog', compact('products'));
 }
