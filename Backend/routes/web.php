@@ -1,110 +1,96 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\Api\PayDunyaController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Api\PayDunyaController;
 
+/*
+|--------------------------------------------------------------------------
+| FRONTEND (PAGES PUBLIQUES)
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/catalogue', [FrontendController::class, 'catalogue'])
-    ->name('catalogue');
+Route::get('/catalogue', function () {
+    return view('catalogue');
+});
 
-Route::get('/login', function () {
-    return response()->json(['message' => 'Veuillez vous connecter'], 401);
-})->name('login');
+Route::get('/cart', function () {
+    return view('cart');
+});
+
+Route::get('/checkout', function () {
+    return view('checkout');
+});
 
 Route::get('/merci', function () {
     return view('merci');
 });
 
-Route::post('/checkout', [CheckoutController::class, 'process']);
+/*
+|--------------------------------------------------------------------------
+| AUTH (PAGES)
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+/*
+|--------------------------------------------------------------------------
+| PAIEMENT
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/checkout/process', [CheckoutController::class, 'process']);
 Route::get('/payer/{order}', [PayDunyaController::class, 'payFromBrowser']);
 
-Route::prefix('admin')->group(function () {
+/*
+|--------------------------------------------------------------------------
+| ESPACE CLIENT
+|--------------------------------------------------------------------------
+*/
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    });
+Route::get('/my-orders', [OrderController::class, 'index']);
+Route::get('/my-orders/{id}', [OrderController::class, 'show']);
 
-});
-
-Route::get('/admin', function () {
-    return 'ADMIN OK';
-});
+/*
+|--------------------------------------------------------------------------
+| ADMIN
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/admin', [AdminController::class, 'dashboard']);
 
-
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-
-    Route::get('/orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])
-        ->name('admin.orders');
-
-});
-
 Route::prefix('admin')->group(function () {
 
-    Route::get('/', [AdminDashboardController::class, 'index'])
-        ->name('admin.dashboard');
+    Route::get('/', [AdminDashboardController::class, 'index']);
+    Route::get('/dashboard', [AdminDashboardController::class, 'index']);
 
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])
-        ->name('admin.dashboard');
+    Route::get('/orders', [AdminOrderController::class, 'index']);
+    Route::get('/orders/{order}', [AdminOrderController::class, 'show']);
+    Route::put('/orders/{order}/status', [AdminOrderController::class, 'updateStatus']);
 
-    Route::get('/orders', [AdminOrderController::class, 'index'])
-        ->name('admin.orders');
+    Route::get('/products', [AdminProductController::class, 'index']);
+    Route::get('/products/create', [AdminProductController::class, 'create']);
+    Route::post('/products', [AdminProductController::class, 'store']);
+    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit']);
+    Route::put('/products/{product}', [AdminProductController::class, 'update']);
+    Route::delete('/products/{product}', [AdminProductController::class, 'destroy']);
 
-    Route::get('/products', [AdminProductController::class, 'index'])
-        ->name('admin.products');
-
-    Route::get('/users', [AdminUserController::class, 'index'])
-        ->name('admin.users');
-
+    Route::get('/users', [AdminUserController::class, 'index']);
 });
-
-Route::prefix('admin')->group(function () {
-
-    Route::get('/products', [AdminProductController::class, 'index'])
-        ->name('admin.products');
-
-    Route::get('/products/create', [AdminProductController::class, 'create'])
-        ->name('admin.products.create');
-
-    Route::post('/products', [AdminProductController::class, 'store'])
-        ->name('admin.products.store');
-
-    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])
-        ->name('admin.products.edit');
-
-    Route::put('/products/{product}', [AdminProductController::class, 'update'])
-        ->name('admin.products.update');
-
-    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])
-        ->name('admin.products.destroy');
-
-});
-
-Route::get('/admin/orders/{order}', [
-    \App\Http\Controllers\Admin\AdminOrderController::class,
-    'show'
-])->name('admin.orders.show');
-
-Route::put('/admin/orders/{order}/status', 
-    [\App\Http\Controllers\Admin\AdminOrderController::class, 'updateStatus']
-)->name('admin.orders.updateStatus');
-
-Route::get('/my-orders', [OrderController::class, 'index'])
-    ->name('orders.index');
-
-Route::get('/my-orders/{id}', [OrderController::class, 'show'])
-    ->name('orders.show');
-
