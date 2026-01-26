@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: mon-nouveau-projet-electro
+    env: php
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan key:generate --force
+      php artisan migrate --force
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
