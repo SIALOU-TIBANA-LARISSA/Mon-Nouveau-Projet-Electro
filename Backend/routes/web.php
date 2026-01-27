@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Api\PayDunyaController;
+use Illuminate\Support\Facades\Artisan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -106,4 +108,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])
         ->name('admin.dashboard');
 
+});
+
+
+Route::get('/__fix-db', function () {
+    Artisan::call('migrate --force');
+    Artisan::call('db:seed --force');
+
+    return '✅ Migrations et seeders exécutés avec succès';
 });
