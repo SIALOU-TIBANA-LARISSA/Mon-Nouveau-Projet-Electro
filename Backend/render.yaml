@@ -1,9 +1,12 @@
 services:
   - type: web
     name: mon-nouveau-projet-electro
-    env: php
+    env: docker
+    plan: free
     buildCommand: |
-      composer install --no-dev --optimize-autoloader
-      php artisan key:generate --force
+      composer install
+    startCommand: |
       php artisan migrate --force
-    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+      php artisan db:seed --force
+      php artisan serve --host 0.0.0.0 --port 10000
+
