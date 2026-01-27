@@ -1,0 +1,15 @@
+"id","category_id","name","slug","description","price","stock_quantity","is_published","main_image_url","sku","created_at","updated_at"
+"3","2","Mug Blanc ","mug-blanc-personnalise","Mug blanc avec impression thermosensible personnalisée.","3500.00","40","1","images/products/mug-blanc.avif
+","MUG-BLANC-002","2025-12-18 11:57:57","2025-12-18 11:57:57"
+"4","3","Sticker Vinyle Rectangle","sticker-vinyle-rectangle","Stickers en vinyle haute résistance.","800.00","100","1","images/products/sticker-vinyle-rectangle.avif
+","STK-RECT-003","2025-12-18 11:57:57","2025-12-18 11:57:57"
+"15","2","Mug Noir","mug-noir",NULL,"5000.00","0","1","images/products/mug-noir.avif","MUG-NOIR-001","2025-12-19 15:11:11","2025-12-19 15:11:11"
+"16","4","Coque iPhone 15 Pro","coque-iphone-13-pro",NULL,"8000.00","0","1","images/products/coque-iphone-13-pro.avif","COQUE-IP13P-001","2025-12-19 15:13:07","2025-12-19 15:38:45"
+"24","3","boite-à-bijoux","boite-bijoux-decorative","Boîte élégante pour ranger bijoux et accessoires.","6000.00","15","1","images/products/boite-à-bijoux.avif","BIJOUX-001","2026-01-08 20:14:15","2026-01-08 20:14:15"
+"26","2","cadre-photo","cadre-photo","Cadre photo moderne pour sublimer vos souvenirs.","4000.00","22","1","images/products/cadre-photo.avif","CADRE-001","2026-01-08 20:15:16","2026-01-08 20:15:16"
+"27","3","Outils de bureau personnalisés en contreplaqué","outils-bureau-contreplaque","Organisateurs, porte-stylos et supports de bureau personnalisés en contreplaqué.","6000.00","50","1","images/products/outils-bureau.avif","OB-001","2026-01-12 21:07:32","2026-01-12 21:07:32"
+"28","3","Sapin de Noël décoratif personnalisé","sapin-noel-decoratif","Sapin de Noël décoratif personnalisable pour fêtes de fin dannée.","4500.00","40","1","images/products/sapin-noel.avif","NOEL-001","2026-01-12 21:07:57","2026-01-12 21:07:57"
+"29","3","Décoration de Noël personnalisée","decoration-noel-personnalisee","Décorations de Noël personnalisables (prénoms, logos, messages).","3000.00","100","1","images/products/deco-noel.avif","NOEL-002","2026-01-12 21:08:57","2026-01-12 21:08:57"
+"31","3","Trophée personnalisé en plexiglass","trophee-plexiglass","Trophée en plexiglass gravé pour récompenses et événements.","12000.00","20","1","images/products/trophee.avif","TR-001","2026-01-12 21:10:27","2026-01-12 21:10:27"
+"32","4","Vase décoratif en filament","vase-decoratif-filament","Vase décoratif imprimé en filament, personnalisable.","9000.00","25","1","images/products/vase.avif","VAS-001","2026-01-12 21:10:44","2026-01-12 21:10:44"
+"33","3","Puzzle personnalisé","puzzle-personnalise","Puzzle personnalisé avec photo, texte ou logo. Idéal pour cadeaux et souvenirs.","4500.00","80","1","images/products/puzzle.avif","PUZZLE-001","2026-01-12 21:13:17","2026-01-12 21:13:17"

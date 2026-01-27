@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+use Database\Seeders\ImportProductsFromCsvSeeder;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
@@ -21,7 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,     // 2. Utilisateurs (dépend des rôles)
             CategorySeeder::class, // 3. Catégories (AJOUTÉ ICI)//
             ProductSeeder::class,
-            
+            ImportProductsFromCsvSeeder::class,
             // Les produits, commandes, etc., viendront plus tard...
         ]);
     }
