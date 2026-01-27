@@ -67,3 +67,5 @@ Route::middleware('auth:sanctum')->group(function () {
     // Stripe
     Route::post('/payment/stripe/checkout', [StripeController::class, 'createCheckoutSession']);
 });
+
+Route::get('/products/{slug}', [ProductController::class, 'show']);

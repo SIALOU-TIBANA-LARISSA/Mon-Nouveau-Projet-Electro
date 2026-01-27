@@ -93,6 +93,14 @@ public function catalogue()
         return response()->json($product);
     }
 
+
+    public function showPage(int $id)
+{
+    $product = Product::with('category')->findOrFail($id);
+
+    return view('product-details', compact('product'));
+}
+
     /**
      * Update the specified resource in storage.
      * Protégé par le middleware Role:Admin

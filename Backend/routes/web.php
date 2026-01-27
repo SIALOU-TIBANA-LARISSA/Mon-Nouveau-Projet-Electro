@@ -133,3 +133,9 @@ Route::get('/__fix-images', function () {
 Route::get('/catalogue', [ProductController::class, 'catalogue'])
     ->name('catalogue');
 
+
+Route::get('/product/{id}', [ProductController::class, 'show'])
+    ->name('product.details');
+
+    Route::get('/product/{id}', [ProductController::class, 'showPage'])
+    ->name('product.details');
