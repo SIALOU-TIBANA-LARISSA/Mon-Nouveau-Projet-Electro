@@ -7,18 +7,28 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      * Accessible par tous les utilisateurs (publique).
      */
-    public function index()
-    {
-        // Retourne tous les produits paginés (par exemple 15 par page)
-        return Product::with('category')->latest()->paginate(15);
-    }
+    
+
+public function catalogue()
+{
+    $products = Product::where('is_published', true)
+        ->paginate(12);
+
+    return view('catalog', [
+        'products' => $products,
+        'pagination' => [
+            'current_page' => $products->currentPage(),
+            'last_page' => $products->lastPage(),
+        ]
+    ]);
+}
+
 
     /**
      * Store a newly created resource in storage.

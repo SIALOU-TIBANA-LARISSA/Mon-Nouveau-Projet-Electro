@@ -11,7 +11,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Api\PayDunyaController;
 use Illuminate\Support\Facades\Artisan;
 use App\Models\Product;
-
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,3 +128,8 @@ Route::get('/__fix-images', function () {
 
     return '✅ Images produits corrigées';
 });
+
+
+Route::get('/catalogue', [ProductController::class, 'catalogue'])
+    ->name('catalogue');
+
