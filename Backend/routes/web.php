@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Api\PayDunyaController;
 use Illuminate\Support\Facades\Artisan;
+use App\Models\Product;
 
 
 /*
@@ -116,4 +117,14 @@ Route::get('/__fix-db', function () {
     Artisan::call('db:seed --force');
 
     return '✅ Migrations et seeders exécutés avec succès';
+});
+
+
+Route::get('/__fix-images', function () {
+    Product::where('main_image_url', 'not like', 'http%')
+        ->update([
+            'main_image_url' => 'https://via.placeholder.com/600x600?text=Produit'
+        ]);
+
+    return '✅ Images produits corrigées';
 });
