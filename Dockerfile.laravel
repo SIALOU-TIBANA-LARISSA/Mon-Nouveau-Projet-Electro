@@ -1,37 +1,48 @@
-# Utilise une image PHP officielle avec FPM pour Nginx
-FROM php:8.2-fpm-alpine
+# Image PHP avec Apache
+FROM php:8.2-apache
 
-# Arguments
-ARG USER=app
-ARG UID=1000
-
-# Mettre à jour les dépendances et installer les outils nécessaires
-RUN apk update && apk add --no-cache \
-    nginx \
+# Installer dépendances système
+RUN apt-get update && apt-get install -y \
     git \
-    curl \
-    supervisor \
+    unzip \
+    libzip-dev \
+    libpng-dev \
+    libonig-dev \
     libxml2-dev \
-    # Extensions PHP nécessaires
-    && docker-php-ext-install pdo_mysql opcache \
-    # Installe les outils pour les dépendances
-    && apk add --no-cache openssl bash \
-    # Nettoyage
-    && rm -rf /var/cache/apk/*
+    libpq-dev \
+    zip \
+    curl \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring zip exif pcntl bcmath gd
 
-# Installe Composer
-# Copie la dernière version de Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Activer mod_rewrite
+RUN a2enmod rewrite
 
-# Crée l'utilisateur non-root pour l'exécution de l'application
-RUN adduser -D -u $UID $USER
-RUN chown -R $USER:$USER /var/www/html
-
-# Définition du répertoire de travail
+# Définir le dossier de travail
 WORKDIR /var/www/html
 
-# Le conteneur démarrera en tant qu'utilisateur 'app'
-USER $USER
+# Copier le projet
+COPY . .
 
-# Commande de démarrage par défaut (FPM)
-CMD ["php-fpm"]
+# Installer Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Installer dépendances Laravel
+RUN composer install --no-dev --optimize-autoloader
+
+# Permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 storage bootstrap/cache
+
+# Apache → dossier public Laravel
+RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+
+# ⚠️ ICI LA PARTIE CRUCIALE ⚠️
+RUN php artisan key:generate --force || true
+RUN php artisan migrate --force
+RUN php artisan db:seed --force
+
+# Exposer le port
+EXPOSE 80
+
+# Lancer Apache
+CMD ["apache2-foreground"]
