@@ -29,6 +29,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Installer dépendances Laravel
 RUN composer install --no-dev --optimize-autoloader
 
+RUN php artisan migrate --force
+RUN php artisan db:seed --force
+
 # Donner les permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
