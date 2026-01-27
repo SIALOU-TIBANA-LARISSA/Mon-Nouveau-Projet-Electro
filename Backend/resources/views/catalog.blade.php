@@ -94,7 +94,8 @@
 </div>
 
 
-        @if (empty($products))
+        @if ($products->isEmpty())
+
 
             <p class="text-gray-600">Aucun produit disponible.</p>
         @else
