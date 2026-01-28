@@ -22,3 +22,7 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+# Autoriser les images produits
+!backend/public/images/
+!backend/public/images/products/
+!backend/public/images/products/**

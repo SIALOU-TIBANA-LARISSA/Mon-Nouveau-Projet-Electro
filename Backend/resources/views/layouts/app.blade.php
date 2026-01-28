@@ -138,7 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     products.forEach(product => {
                         container.innerHTML += `
     <div class="bg-white shadow rounded-lg overflow-hidden">
-            <img src="{{ url('/') }}/${product.main_image_url}"
+            <img src="${product.main_image_url}">
+
      class="w-full h-40 object-cover"
      alt="${product.name}">
 
