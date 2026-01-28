@@ -107,10 +107,11 @@
                     <div class="bg-white shadow rounded-lg overflow-hidden">
 
                         <img
-                            src="{{ asset(str_replace('\\', '/', $product->main_image_url)) }}"
-                            class="w-full h-40 object-cover"
-                            alt="image produit"
-                        >
+                          src="/{{ $product->main_image_url }}"
+                          class="w-full h-40 object-cover"
+                          alt="image produit"
+                        />
+
 
                         <div class="p-4">
                             <h2 class="font-semibold text-sm">
