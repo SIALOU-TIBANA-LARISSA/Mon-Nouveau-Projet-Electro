@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 data-id="${product.id}"
                 data-name="${product.name}"
                 data-price="${product.price}"
-                data-image="http://127.0.0.1:8001/${product.main_image_url}">
+                data-image="${product.main_image_url}">
                 Ajouter au panier
             </button>
         </div>
@@ -186,7 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- ========================= -->
 <!-- 1️⃣ PANIER (DOIT ÊTRE 1ER) -->
 <!-- ========================= -->
-<script src="{{ asset('js/cart.js') }}"></script>
+<script src="/js/cart.js"></script>
+
 
 <!-- ========================= -->
 <!-- 2️⃣ MENU CONNEXION -->

@@ -128,16 +128,16 @@
                             </a>
 
                             <button
-    onclick="addToCart({
-        id: {{ $product['id'] }},
-        name: '{{ $product['name'] }}',
-        price: {{ $product['price'] }},
-        image: '{{ asset($product['main_image_url']) }}'
-    })"
-    class="mt-2 w-full bg-gray-200 py-2 rounded hover:bg-gray-300"
->
-    Ajouter au panier
-</button>
+                              onclick="addToCart({
+                              id: {{ $product['id'] }},
+                              name: '{{ $product['name'] }}',
+                              price: {{ $product['price'] }},
+                              image: '{{ asset($product['main_image_url']) }}'
+                              })"
+                              class="mt-2 w-full bg-gray-200 py-2 rounded hover:bg-gray-300"
+                              >
+                              Ajouter au panier
+                            </button>
 
 
                         </div>
