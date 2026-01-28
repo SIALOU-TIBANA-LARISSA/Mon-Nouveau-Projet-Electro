@@ -3,6 +3,7 @@
 @section('title', 'Catalogue')
 
 @section('content')
+@php use Illuminate\Support\Str; @endphp
 
 <div class="max-w-7xl mx-auto px-4">
     <div class="flex gap-6">
@@ -107,10 +108,13 @@
                     <div class="bg-white shadow rounded-lg overflow-hidden">
 
                         <img
-                          src="{{ $product->main_image_url }}"
-                          class="w-full h-40 object-cover"
-                          alt="image produit"
+                        src="{{ Str::startsWith($product->main_image_url, '/')
+                        ? $product->main_image_url
+                        : asset('images/products/default.avif') }}"
+                        class="w-full h-40 object-cover"
+                        alt="image produit"
                         />
+
 
 
                         <div class="p-4">
