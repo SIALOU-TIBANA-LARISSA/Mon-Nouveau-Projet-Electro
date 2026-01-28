@@ -107,7 +107,7 @@
                     <div class="bg-white shadow rounded-lg overflow-hidden">
 
                         <img
-                            src="{{ asset($product['main_image_url']) }}"
+                            src="{{ asset(str_replace('\\', '/', $product->main_image_url)) }}"
                             class="w-full h-40 object-cover"
                             alt="image produit"
                         >
