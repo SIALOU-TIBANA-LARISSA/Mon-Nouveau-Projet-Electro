@@ -138,12 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     products.forEach(product => {
                         container.innerHTML += `
     <div class="bg-white shadow rounded-lg overflow-hidden">
-            <img src="${product.main_image_url}">
-
-     class="w-full h-40 object-cover"
-     alt="${product.name}">
-
-
+            <img
+             src="${product.main_image_url}"
+             class="w-full h-40 object-cover"
+             alt="${product.name}"
+             >
 
         <div class="p-4">
             <h2 class="font-semibold text-sm">
