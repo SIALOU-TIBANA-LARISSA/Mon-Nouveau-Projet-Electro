@@ -17,7 +17,8 @@ class ProductController extends Controller
 
 public function catalogue()
 {
-dd('JE SUIS ICI');
+dd($products->pluck('main_image_url'));
+
     $products = Product::where('is_published', true)
         ->paginate(12);
 
