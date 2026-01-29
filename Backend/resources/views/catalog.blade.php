@@ -3,7 +3,28 @@
 @section('title', 'Catalogue')
 
 @section('content')
-@php use Illuminate\Support\Str; @endphp
+
+@php
+use Illuminate\Support\Str;
+
+$imageMap = [
+    'Boîte à bijoux' => '/images/products/boite-à-bijoux.avif',
+    'Cadre photo' => '/images/products/cadre-photo.avif',
+    'Coque iPhone 13 Pro' => '/images/products/coque-iphone-13-pro.avif',
+    'Décoration de Noël personnalisée' => '/images/products/deco-noel.avif',
+    'Mug Blanc Personnalisé' => '/images/products/mug-blanc.avif',
+    'Mug Noir Personnalisé' => '/images/products/mug-noir.avif',
+    'Outils de bureau personnalisés' => '/images/products/outils-bureau.avif',
+    'Puzzle personnalisé' => '/images/products/puzzle.avif',
+    'Sapin de Noël décoratif personnalisé' => '/images/products/sapin-noel.avif',
+    'Sticker Vinyle Rectangle' => '/images/products/sticker-vinyle-rectangle.avif',
+    'Sticker Vinyle Rond' => '/images/products/sticker-vinyle-rond.avif',
+    'Trophée personnalisé en plexiglass' => '/images/products/trophee.avif',
+    'Vase décoratif' => '/images/products/vase.avif',
+];
+@endphp
+
+
 
 <div class="max-w-7xl mx-auto px-4">
     <div class="flex gap-6">
@@ -108,12 +129,13 @@
                     <div class="bg-white shadow rounded-lg overflow-hidden">
 
                         <img
-                        src="{{ Str::startsWith($product->main_image_url, '/')
-                        ? $product->main_image_url
-                        : asset('images/products/default.avif') }}"
-                        class="w-full h-40 object-cover"
-                        alt="image produit"
-                        />
+                         src="{{ Str::startsWith($product->main_image_url, '/')
+                         ? $product->main_image_url
+                         : ($imageMap[$product->name] ?? asset('images/products/default.avif')) }}"
+                         class="w-full h-40 object-cover"
+                         alt="{{ $product->name }}"
+                         >
+
 
 
 
