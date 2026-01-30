@@ -129,12 +129,16 @@ $imageMap = [
                     <div class="bg-white shadow rounded-lg overflow-hidden">
 
                         <img
-                          src="{{ $product->main_image_url
-                          ? $product->main_image_url
-                          : asset('images/products/default.avif') }}"
-                          class="w-full h-40 object-cover"
-                          alt="{{ $product->name }}"
+                         src="{{ Str::startsWith($product->main_image_url, '/')
+                         ? $product->main_image_url
+                         : asset('images/products/default.avif') }}"
+                         class="w-full h-40 object-cover"
+                         alt="{{ $product->name }}"
                         >
+
+
+
+
 
 
                         <div class="p-4">
