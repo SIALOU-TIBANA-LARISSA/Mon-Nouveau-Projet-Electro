@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-use Database\Seeders\ImportProductsFromCsvSeeder;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
