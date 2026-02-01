@@ -39,11 +39,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <span>${order.status}</span>
 
                 <div class="mt-3">
-                    <a href="{{ route('orders.show', $order->id) }}"
-   class="inline-block bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
-    Voir les détails
-</a>
-
+                    <a href="/my-orders/${order.id}"
+                       class="inline-block bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                        Voir les détails
+                    </a>
                 </div>
             </div>
         `;
