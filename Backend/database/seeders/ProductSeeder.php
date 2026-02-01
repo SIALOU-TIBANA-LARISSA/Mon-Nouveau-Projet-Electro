@@ -14,8 +14,8 @@ class ProductsSeeder extends Seeder
         DB::table('products')->insert([
             [
                 'category_id' => 3,
-                'name' => 'Boîte à bijoux',
-                'slug' => 'boite-a-bijoux',
+                'name' => 'Boite-à-bijoux',
+                'slug' => 'Boite-à-bijoux',
                 'description' => 'Boîte élégante pour ranger bijoux et accessoires.',
                 'price' => 6000,
                 'stock_quantity' => 15,
@@ -26,31 +26,31 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 2,
-                'name' => 'Cadre photo',
+                'name' => 'cadre-photo',
                 'slug' => 'cadre-photo',
                 'description' => 'Cadre photo moderne.',
                 'price' => 4000,
                 'stock_quantity' => 22,
                 'is_published' => 1,
-                'main_image_url' => '/images/products/Cadre-photo.avif',
+                'main_image_url' => '/images/products/cadre-photo.avif',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'category_id' => 4,
-                'name' => 'Coque iPhone 15 Pro',
+                'name' => 'coque-iphone-15-pro',
                 'slug' => 'coque-iphone-15-pro',
                 'description' => 'Coque personnalisée pour iPhone 15 Pro.',
                 'price' => 8000,
                 'stock_quantity' => 30,
                 'is_published' => 1,
-                'main_image_url' => '/images/products/Coque-iPhone-15-Pro.avif',
+                'main_image_url' => '/images/products/coque-iphone-15-pro.avif',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'category_id' => 3,
-                'name' => 'Décoration de Noël',
+                'name' => 'deco-noel',
                 'slug' => 'deco-noel',
                 'description' => 'Décoration de Noël personnalisée.',
                 'price' => 3000,
@@ -62,7 +62,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 2,
-                'name' => 'Mug blanc personnalisé',
+                'name' => 'mug-blanc',
                 'slug' => 'mug-blanc',
                 'description' => 'Mug blanc personnalisable.',
                 'price' => 3500,
@@ -74,7 +74,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 2,
-                'name' => 'Mug noir personnalisé',
+                'name' => 'mug-noir',
                 'slug' => 'mug-noir',
                 'description' => 'Mug noir personnalisable.',
                 'price' => 5000,
@@ -86,7 +86,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 3,
-                'name' => 'Outils de bureau',
+                'name' => 'outils-bureau',
                 'slug' => 'outils-bureau',
                 'description' => 'Outils de bureau personnalisés.',
                 'price' => 6000,
@@ -98,7 +98,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 3,
-                'name' => 'Puzzle personnalisé',
+                'name' => 'puzzle',
                 'slug' => 'puzzle',
                 'description' => 'Puzzle personnalisé.',
                 'price' => 4500,
@@ -110,7 +110,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 3,
-                'name' => 'Sapin de Noël décoratif',
+                'name' => 'sapin-noel',
                 'slug' => 'sapin-noel',
                 'description' => 'Sapin de Noël décoratif personnalisé.',
                 'price' => 4500,
@@ -122,7 +122,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 3,
-                'name' => 'Sticker vinyle rectangle',
+                'name' => 'sticker-vinyle-rectangle.avif',
                 'slug' => 'sticker-vinyle-rectangle',
                 'description' => 'Sticker vinyle rectangle.',
                 'price' => 800,
@@ -134,7 +134,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 3,
-                'name' => 'Sticker vinyle rond',
+                'name' => 'sticker-vinyle-rond',
                 'slug' => 'sticker-vinyle-rond',
                 'description' => 'Sticker vinyle rond.',
                 'price' => 800,
@@ -146,7 +146,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 3,
-                'name' => 'Trophée personnalisé',
+                'name' => 'trophee',
                 'slug' => 'trophee',
                 'description' => 'Trophée en plexiglass.',
                 'price' => 12000,
@@ -158,7 +158,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'category_id' => 4,
-                'name' => 'Vase décoratif',
+                'name' => 'vase',
                 'slug' => 'vase',
                 'description' => 'Vase décoratif.',
                 'price' => 9000,

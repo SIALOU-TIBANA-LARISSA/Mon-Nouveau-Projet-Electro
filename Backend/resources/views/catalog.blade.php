@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 $imageMap = [
     'Boîte à bijoux' => '/images/products/boite-à-bijoux.avif',
-    'Cadre photo' => '/images/products/Cadre-photo.avif',
+    'Cadre photo' => '/images/products/cadre-photo.avif',
     'Coque iPhone 13 Pro' => '/images/products/Coque-iphone-13-pro.avif',
     'Décoration de Noël personnalisée' => '/images/products/deco-noel.avif',
     'Mug Blanc Personnalisé' => '/images/products/mug-blanc.avif',
@@ -129,12 +129,13 @@ $imageMap = [
                     <div class="bg-white shadow rounded-lg overflow-hidden">
 
                         <img
-                         src="{{ Str::startsWith($product->main_image_url, '/')
-                         ? $product->main_image_url
+                         src="{{ $product->main_image_url
+                         ? asset(ltrim($product->main_image_url, '/'))
                          : asset('images/products/default.avif') }}"
                          class="w-full h-40 object-cover"
                          alt="{{ $product->name }}"
                         >
+
 
 
 
