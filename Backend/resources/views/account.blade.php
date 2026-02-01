@@ -6,24 +6,80 @@
     <div class="flex gap-8">
 
         {{-- MENU GAUCHE --}}
-        <aside class="w-64 bg-white border rounded-lg p-4">
-            <h2 class="font-bold text-lg mb-4">Votre compte</h2>
+<aside class="w-64 bg-white border rounded-lg p-4">
+    <h2 class="font-bold text-lg mb-4">Votre compte</h2>
 
-            <ul class="space-y-3 text-gray-700">
-                <li class="font-semibold text-orange-600">Votre compte</li>
-                <li>
-                    <a href="/my-orders" class="hover:text-orange-500">
-                        Vos commandes
-                    </a>
-                </li>
-                <li>Boîte de réception</li>
-                <li>Vos avis en attente</li>
-                <li>Bons d'achat</li>
-                <li>Favoris</li>
-                <li>Vendeurs suivis</li>
-                <li>Vu récemment</li>
-            </ul>
-        </aside>
+    <ul class="space-y-3 text-gray-700">
+
+        {{-- Votre compte --}}
+        <li>
+            <a href="/account"
+               class="block px-2 py-1 rounded
+               {{ request()->is('account') ? 'text-orange-600 font-semibold bg-orange-50' : 'hover:text-orange-500' }}">
+                Votre compte
+            </a>
+        </li>
+
+        {{-- Vos commandes --}}
+        <li>
+            <a href="/my-orders"
+               class="block px-2 py-1 rounded
+               {{ request()->is('my-orders*') ? 'text-orange-600 font-semibold bg-orange-50' : 'hover:text-orange-500' }}">
+                Vos commandes
+            </a>
+        </li>
+
+        {{-- Boîte de réception --}}
+        <li>
+            <a href="#"
+               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
+                Boîte de réception
+            </a>
+        </li>
+
+        {{-- Avis --}}
+        <li>
+            <a href="#"
+               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
+                Vos avis en attente
+            </a>
+        </li>
+
+        {{-- Bons --}}
+        <li>
+            <a href="#"
+               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
+                Bons d'achat
+            </a>
+        </li>
+
+        {{-- Favoris --}}
+        <li>
+            <a href="#"
+               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
+                Favoris
+            </a>
+        </li>
+
+        {{-- Vendeurs --}}
+        <li>
+            <a href="#"
+               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
+                Vendeurs suivis
+            </a>
+        </li>
+
+        {{-- Vu récemment --}}
+        <li>
+            <a href="#"
+               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
+                Vu récemment
+            </a>
+        </li>
+
+    </ul>
+</aside>
+
 
         {{-- CONTENU DROIT --}}
         <main class="flex-1">
@@ -41,14 +97,20 @@
 
                 {{-- ADRESSES --}}
                 <div class="bg-white border rounded-lg p-4">
-                    <h3 class="font-semibold mb-2 flex justify-between">
-                        ADRESSES
-                        <span class="text-orange-500 cursor-pointer">✏️</span>
-                    </h3>
-                    <p class="text-gray-600">
-                        Aucune adresse enregistrée pour le moment.
-                    </p>
-                </div>
+    <h3 class="font-semibold mb-2 flex justify-between">
+        ADRESSES
+        <a href="/account/addresses"
+           class="text-orange-500 hover:text-orange-600 cursor-pointer"
+           title="Modifier l’adresse">
+            ✏️
+        </a>
+    </h3>
+
+    <p class="text-gray-600">
+        Aucune adresse enregistrée pour le moment.
+    </p>
+</div>
+
 
                 {{-- CRÉDIT --}}
                 <div class="bg-white border rounded-lg p-4">
@@ -60,15 +122,17 @@
 
                 {{-- PRÉFÉRENCES --}}
                 <div class="bg-white border rounded-lg p-4">
-                    <h3 class="font-semibold mb-2">PRÉFÉRENCES DE COMMUNICATION</h3>
-                    <p class="text-gray-600">
-                        Gérez vos préférences de communication par e-mail.
-                    </p>
+                <h3 class="font-semibold mb-2">PRÉFÉRENCES DE COMMUNICATION</h3>
+                <p class="text-gray-600">
+                  Gérez vos préférences de communication par e-mail.
+                </p>
 
-                    <a href="#" class="text-orange-500 font-medium">
-                        Modifier les préférences
-                    </a>
+                <a href="/account/preferences"
+                  class="text-orange-500 font-medium hover:text-orange-600">
+                 Modifier les préférences
+                </a>
                 </div>
+
 
             </div>
 
