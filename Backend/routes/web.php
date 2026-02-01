@@ -73,6 +73,15 @@ Route::get('/my-orders', [OrderController::class, 'index']);
 Route::get('/my-orders/{id}', [OrderController::class, 'show']);
 Route::get('/account', [AccountController::class, 'index'])
     ->name('account');
+
+    Route::get('/account/address', function () {
+    return view('account.address');
+})->name('account.address');
+
+Route::get('/account/preferences', function () {
+    return view('account.preferences');
+})->name('account.preferences');
+
 /*
 |--------------------------------------------------------------------------
 | ADMIN
