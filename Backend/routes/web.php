@@ -7,12 +7,12 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CheckoutController;
+//use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Api\PayDunyaController;
 use Illuminate\Support\Facades\Artisan;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\AccountController;
 /*
 |--------------------------------------------------------------------------
 | FRONTEND (PAGES PUBLIQUES)
@@ -60,7 +60,7 @@ Route::get('/register', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::post('/checkout/process', [CheckoutController::class, 'process']);
+//Route::post('/checkout/process', [CheckoutController::class, 'process']);
 Route::get('/payer/{order}', [PayDunyaController::class, 'payFromBrowser']);
 
 /*
@@ -71,7 +71,8 @@ Route::get('/payer/{order}', [PayDunyaController::class, 'payFromBrowser']);
 
 Route::get('/my-orders', [OrderController::class, 'index']);
 Route::get('/my-orders/{id}', [OrderController::class, 'show']);
-
+Route::get('/account', [AccountController::class, 'index'])
+    ->name('account');
 /*
 |--------------------------------------------------------------------------
 | ADMIN

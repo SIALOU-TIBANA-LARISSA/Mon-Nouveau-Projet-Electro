@@ -101,6 +101,24 @@
     '/images/customization-examples/vase/exemple-1.avif',
     '/images/customization-examples/vase/exemple-2.avif'
      ],
+     
+    // 🔹 Boucles d’oreilles africaines
+    'boucles-oreilles-africaines' => [
+        '/images/customization-examples/boucles-oreilles/exemple-1.avif',
+        '/images/customization-examples/boucles-oreilles/exemple-2.avif',
+    ],
+
+    // 🔹 Support ordinateur
+    'support-ordinateur' => [
+        '/images/customization-examples/support-ordinateur/exemple-1.avif',
+        '/images/customization-examples/support-ordinateur/exemple-2.avif',
+    ],
+
+    // 🔹 Présentoir bijoux
+    'presentoir-bijoux' => [
+        '/images/customization-examples/presentoir-bijoux/exemple-1.avif',
+        '/images/customization-examples/presentoir-bijoux/exemple-2.avif',
+    ],
 
 
 ];
