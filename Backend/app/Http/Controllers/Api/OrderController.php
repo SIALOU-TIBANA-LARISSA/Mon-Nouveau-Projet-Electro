@@ -12,7 +12,6 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
-
 class OrderController extends Controller
 {
     /**
