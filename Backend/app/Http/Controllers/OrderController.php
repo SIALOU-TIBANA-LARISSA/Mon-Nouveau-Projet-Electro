@@ -8,13 +8,20 @@ class OrderController extends Controller
 {
     public function index()
     {
-        // On affiche juste la page
-        return view('orders.index');
-    }
+    $orders = Order::where('user_id', auth()->id())
+        ->orderBy('created_at', 'desc')
+        ->get();
 
+    return view('orders.index', compact('orders'));
+    }
     public function show($id)
     {
-        return view('orders.show');
+        $order = Order::with('items.product')
+        ->where('id', $id)
+        ->where('user_id', auth()->id())
+        ->firstOrFail();
+
+    return view('orders.show', compact('order'));
     }
 }
 
