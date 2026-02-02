@@ -91,6 +91,10 @@ Route::get('/account/preferences', [AccountController::class, 'preferences'])
     return view('orders.detail');
 });
 
+Route::get('/login', function () {
+    return redirect('/');
+})->name('login');
+
 
 /*
 |--------------------------------------------------------------------------
