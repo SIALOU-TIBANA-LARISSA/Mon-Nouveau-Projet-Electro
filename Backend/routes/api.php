@@ -61,12 +61,19 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/auth/me', [AuthController::class, 'me']);
-Route::middleware('auth:sanctum')->get('/orders/{id}', [OrderController::class, 'show']);
 
     // Commandes
     Route::post('/orders', [OrderController::class, 'placeOrder']);
     Route::get('/orders', [OrderController::class, 'listOrders']);
-    Route::get('/orders/{id}', [OrderController::class, 'showOrder']);
+
+    Route::get('/orders/{order}', function (\App\Models\Order $order) {
+    abort_if($order->user_id !== auth()->id(), 403);
+
+    return response()->json(
+        $order->load('items.product')
+    );
+});
+
 
     // Stripe
     Route::post('/payment/stripe/checkout', [StripeController::class, 'createCheckoutSession']);

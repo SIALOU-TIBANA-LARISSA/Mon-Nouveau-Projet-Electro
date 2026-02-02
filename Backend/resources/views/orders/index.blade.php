@@ -64,10 +64,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                      ${order.status}
                     </span>
                     <div class="mt-3">
-                     <a href="/my-orders/${order.id}"
-                      class="text-orange-500 font-medium hover:underline">
-                       Voir les détails →
+                     <a href="/order-detail?id=${order.id}"
+                       class="text-orange-500 font-medium hover:underline">
+                        Voir les détails →
                      </a>
+
                     </div>
 
                 </div>
