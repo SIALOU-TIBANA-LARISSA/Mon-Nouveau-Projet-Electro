@@ -71,17 +71,15 @@ Route::get('/payer/{order}', [PayDunyaController::class, 'payFromBrowser']);
 
 Route::get('/my-orders', [OrderController::class, 'index']);
 Route::get('/my-orders/{id}', [OrderController::class, 'show']);
+
 Route::get('/account', [AccountController::class, 'index'])
     ->name('account');
 
-    Route::get('/account/addresses', function () {
-    return view('account.address');
-})->name('account.addresses');
+Route::get('/account/addresses', [AccountController::class, 'addresses'])
+    ->name('account.addresses');
 
-
-Route::get('/account/preferences', function () {
-    return view('account.preferences');
-})->name('account.preferences');
+Route::get('/account/preferences', [AccountController::class, 'preferences'])
+    ->name('account.preferences');
 
 /*
 |--------------------------------------------------------------------------

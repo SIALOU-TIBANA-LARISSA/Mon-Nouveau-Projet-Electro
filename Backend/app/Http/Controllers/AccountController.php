@@ -8,6 +8,11 @@ class AccountController extends Controller
 {
     public function index()
     {
+        return view('account');
+    }
+
+    public function addresses()
+    {
         return view('account.address');
     }
 
