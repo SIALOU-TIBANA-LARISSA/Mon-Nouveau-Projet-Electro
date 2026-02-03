@@ -120,8 +120,15 @@
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         @foreach($exampleMap[$slug] as $img)
-            <img src="{{ $img }}" class="rounded shadow" alt="Exemple de personnalisation">
-        @endforeach
+    <div class="w-full h-40 bg-gray-100 flex items-center justify-center rounded shadow overflow-hidden">
+        <img
+            src="{{ $img }}"
+            class="w-full h-full object-contain"
+            alt="Exemple de personnalisation"
+        >
+    </div>
+@endforeach
+
     </div>
 
     <p class="text-sm text-gray-500 mt-3">
