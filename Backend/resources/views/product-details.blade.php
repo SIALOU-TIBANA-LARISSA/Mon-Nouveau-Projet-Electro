@@ -22,7 +22,7 @@
 
 @php
     $exampleMap = [
-        'boite-bijoux-decorative' => [
+        'boite-a-bijoux' => [
     '/images/customization-examples/boite-a-bijoux/exemple-1.avif',
     '/images/customization-examples/boite-a-bijoux/exemple-2.avif',
 ],
@@ -31,22 +31,12 @@
             '/images/customization-examples/cadre-photo/exemple-1.avif',
             '/images/customization-examples/cadre-photo/exemple-2.avif'
         ],
-        'casquette-personnalisable' => [
-            '/images/customization-examples/casquette/exemple-1.avif',
-            '/images/customization-examples/casquette/exemple-2.avif',
-        ],
-        'coque-iphone12-personnalisee' => [
-            '/images/customization-examples/coque-iphone-12/exemple-1.avif',
-            '/images/customization-examples/coque-iphone-12/exemple-2.avif',
-        ],
+
         'coque-iphone-15-pro' => [
             '/images/customization-examples/coque-iphone-15-pro/exemple-1.avif',
             '/images/customization-examples/coque-iphone-15-pro/exemple-2.avif',
         ],
-        'coussin-decoratif' => [
-            '/images/customization-examples/coussin/exemple-1.avif',
-            '/images/customization-examples/coussin/exemple-2.avif',
-        ],
+        
         'mug-blanc-personnalise' => [
             '/images/customization-examples/mug-blanc/exemple-1.avif',
             '/images/customization-examples/mug-blanc/exemple-2.avif',
@@ -55,10 +45,8 @@
             '/images/customization-examples/mug-noir/exemple-1.avif',
             '/images/customization-examples/mug-noir/exemple-2.avif',
         ],
-        'polo-classique' => [
-            '/images/customization-examples/polo/exemple-1.avif',
-            '/images/customization-examples/polo/exemple-2.avif',
-        ],
+        
+
         'sticker-vinyle-rectangle' => [
             '/images/customization-examples/sticker-vinyle-rectangle/exemple-1.avif',
             '/images/customization-examples/sticker-vinyle-rectangle/exemple-2.avif',
@@ -66,10 +54,6 @@
         'sticker-vinyle-rond' => [
             '/images/customization-examples/sticker-vinyle-rond/exemple-1.avif',
             '/images/customization-examples/sticker-vinyle-rond/exemple-2.avif',
-        ],
-        'stylos-publicitaires' => [
-            '/images/customization-examples/stylos/exemple-1.avif',
-            '/images/customization-examples/stylos/exemple-2.avif',
         ],
 
         'decoration-noel-personnalisee' => [
