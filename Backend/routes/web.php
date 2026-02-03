@@ -68,15 +68,16 @@ Route::get('/payer/{order}', [PayDunyaController::class, 'payFromBrowser']);
 | ESPACE CLIENT
 |--------------------------------------------------------------------------
 */
+  Route::get('/my-orders', function () {
+        return view('orders.index');
+         })->name('orders.index');
 
+Route::get('/order-detail', function () {
+    return view('orders.detail');
+});
+
+ 
 Route::middleware(['auth'])->group(function () {
-
-    Route::get('/my-orders', [OrderController::class, 'index'])
-        ->name('orders.index');
-
-    Route::get('/my-orders/{order}', [OrderController::class, 'show'])
-        ->name('orders.show');
-        });
 
 Route::get('/account', [AccountController::class, 'index'])
     ->name('account');
@@ -87,8 +88,6 @@ Route::get('/account/addresses', [AccountController::class, 'addresses'])
 Route::get('/account/preferences', [AccountController::class, 'preferences'])
     ->name('account.preferences');
 
-    Route::get('/order-detail', function () {
-    return view('orders.detail');
 });
 
 Route::get('/login', function () {
