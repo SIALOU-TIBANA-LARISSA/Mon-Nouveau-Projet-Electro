@@ -39,7 +39,7 @@
             '/images/customization-examples/coque-iphone-12/exemple-1.avif',
             '/images/customization-examples/coque-iphone-12/exemple-2.avif',
         ],
-        'coque-iphone-13-pro' => [
+        'coque-iphone-15-pro' => [
             '/images/customization-examples/coque-iphone-15-pro/exemple-1.avif',
             '/images/customization-examples/coque-iphone-15-pro/exemple-2.avif',
         ],
