@@ -120,7 +120,7 @@
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         @foreach($exampleMap[$slug] as $img)
-    <div class="w-full h-40 bg-gray-100 flex items-center justify-center rounded shadow overflow-hidden">
+    <div class="w-full h-56 bg-gray-100 flex items-center justify-center rounded shadow overflow-hidden">
         <img
             src="{{ $img }}"
             class="w-full h-full object-contain"
