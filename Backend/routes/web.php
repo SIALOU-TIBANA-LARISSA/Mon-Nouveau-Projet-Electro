@@ -86,13 +86,6 @@ Route::get('/account/addresses', [AccountController::class, 'addresses'])
 Route::get('/account/preferences', [AccountController::class, 'preferences'])
     ->name('account.preferences');
 
-
-
-Route::get('/login', function () {
-    return redirect('/');
-})->name('login');
-
-
 /*
 |--------------------------------------------------------------------------
 | ADMIN
