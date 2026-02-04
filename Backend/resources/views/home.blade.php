@@ -22,12 +22,11 @@
 
 
     <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4 relative z-10">
-        Personnalisation sur mesure & Impression
+        Modélisation & impression sur mesure
     </h1>
 
     <p id="hero-text" class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto relative z-10">
-        Créez des produits uniques : mugs, coques, textiles et goodies personnalisés
-        pour vos cadeaux, événements et entreprises.
+        Produits modélisés et imprimés sur mesure : vases , coques, goodies et bien plus, pour particuliers et entreprises.
     </p>
 
     <a href="/catalogue"
@@ -155,8 +154,8 @@
 .float-2 { bottom: 15%; left: 12%; }
 .float-3 { top: 18%; right: 10%; }
 .float-4 { bottom: 12%; right: 18%; }
-.float-5 { top: 55%; right: 40%; width: 30px !important; }
-.float-6 { top: 15%; right: 5%; width: 26px !important; }
+.float-5 { top: 55%; right: 40%; width: 38px !important; }
+.float-6 { top: 15%; right: 5%; width: 40px !important; }
 
 @keyframes floatSlow {
     0% { transform: translateY(0); }
