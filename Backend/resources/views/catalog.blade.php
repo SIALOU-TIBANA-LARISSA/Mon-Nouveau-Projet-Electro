@@ -103,6 +103,12 @@ $imageMap = [
        Trophée personnalisé
     </a>
 </li>
+<li>
+    <a href="/catalogue?category=cadeaux-personnalises"
+       class="hover:text-orange-500">
+       Boucles d’oreilles africaines
+    </a>
+</li>
 </ul>
  </details>
 
