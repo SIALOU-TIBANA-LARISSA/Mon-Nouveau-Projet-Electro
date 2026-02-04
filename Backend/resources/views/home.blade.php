@@ -141,7 +141,7 @@
 
 .float {
     position: absolute;
-    width: 32px !important;      /* taille équilibrée */
+    width: 38px !important;      /* taille équilibrée */
     height: auto !important;
     opacity: 0.9 !important;     /* couleurs visibles */
     filter: blur(0.4px);         /* effet arrière-plan */
@@ -155,8 +155,8 @@
 .float-2 { bottom: 15%; left: 12%; }
 .float-3 { top: 18%; right: 10%; }
 .float-4 { bottom: 12%; right: 18%; }
-.float-5 { top: 55%; right: 40%; width: 26px !important; }
-.float-6 { top: 15%; right: 5%; width: 22px !important; }
+.float-5 { top: 55%; right: 40%; width: 30px !important; }
+.float-6 { top: 15%; right: 5%; width: 26px !important; }
 
 @keyframes floatSlow {
     0% { transform: translateY(0); }
