@@ -42,61 +42,147 @@ $imageMap = [
 
                 <!-- Groupe 1 -->
                 <details class="group">
-                    <summary class="cursor-pointer font-semibold flex justify-between items-center">
-                        📱 Téléphones & accessoires
-                        <span class="group-open:rotate-180">▼</span>
-                    </summary>
-                    <ul class="ml-4 mt-2 space-y-1 text-gray-700">
-                        <li>Coques</li>
-                        <li>Stickers</li>
-                    </ul>
-                </details>
+    <summary class="cursor-pointer font-semibold flex justify-between items-center">
+        <a href="/catalogue?category=telephones-accessoires"
+           class="hover:text-orange-500">
+            📱 Téléphones & accessoires
+        </a>
+        <span class="group-open:rotate-180">▼</span>
+    </summary>
+
+    <ul class="ml-4 mt-2 space-y-1 text-gray-700">
+        <li>
+            <a href="/catalogue?category=coques"
+               class="hover:text-orange-500">
+                Coques
+            </a>
+        </li>
+        <li>
+            <a href="/catalogue?category=stickers"
+               class="hover:text-orange-500">
+                Stickers
+            </a>
+        </li>
+    </ul>
+</details>
+
 
                 <!-- Groupe 2 -->
                 <details class="group">
                     <summary class="cursor-pointer font-semibold flex justify-between items-center">
-                        🎁 Cadeaux personnalisés
-                        <span class="group-open:rotate-180">▼</span>
+                     <a href="/catalogue?category=cadeaux-personnalises"
+                      class="hover:text-orange-500">
+                       🎁 Cadeaux personnalisés
+                     </a>
+                     <span class="group-open:rotate-180">▼</span>
                     </summary>
+
                     <ul class="ml-4 mt-2 space-y-1 text-gray-700">
-                        <li>Mugs</li>
-                        <li>Boîtes à bijoux</li>
-                        <li>Puzzle personnalisé</li>
-                        <li>Sticker Vinyle Rectangle</li>
-                    </ul>
+    <li>
+        <a href="/catalogue?category=mugs"
+           class="hover:text-orange-500">
+           Mugs
+        </a>
+    </li>
+    <li>
+        <a href="/catalogue?category=boites-bijoux"
+           class="hover:text-orange-500">
+           Boîtes à bijoux
+        </a>
+    </li>
+    <li>
+        <a href="/catalogue?category=puzzle-personnalise"
+           class="hover:text-orange-500">
+           Puzzle personnalisé
+        </a>
+    </li>
+    <li>
+    <a href="/catalogue?category=sticker-vinyle-rectangle"
+       class="hover:text-orange-500">
+       Sticker Vinyle Rectangle
+    </a>
+</li>
+
+</ul>
+
                 </details>
 
                 <!-- Groupe 3 -->
                 <details class="group">
-                    <summary class="cursor-pointer font-semibold flex justify-between items-center">
-                        🏠 Maison & déco
-                        <span class="group-open:rotate-180">▼</span>
-                    </summary>
-                    <ul class="ml-4 mt-2 space-y-1 text-gray-700">
-                        <li>Cadres photo</li>
-                        <li>Sapin de Noël décoratif personnalisé</li>
-                        <li>Vase décoratif </li>
-                        <li>Décoration de Noël personnalisée</li>
-                    </ul>
-                </details>
+    <summary class="cursor-pointer font-semibold flex justify-between items-center">
+        <a href="/catalogue?category=maison-deco"
+           class="hover:text-orange-500">
+            🏠 Maison & déco
+        </a>
+        <span class="group-open:rotate-180">▼</span>
+    </summary>
+
+    <ul class="ml-4 mt-2 space-y-1 text-gray-700">
+        <li>
+            <a href="/catalogue?category=cadres-photo"
+               class="hover:text-orange-500">
+                Cadres photo
+            </a>
+        </li>
+        <li>
+            <a href="/catalogue?category=sapin-noel"
+               class="hover:text-orange-500">
+                Sapin de Noël décoratif personnalisé
+            </a>
+        </li>
+        <li>
+            <a href="/catalogue?category=vase-decoratif"
+               class="hover:text-orange-500">
+                Vase décoratif
+            </a>
+        </li>
+        <li>
+            <a href="/catalogue?category=decoration-noel"
+               class="hover:text-orange-500">
+                Décoration de Noël personnalisée
+            </a>
+        </li>
+    </ul>
+</details>
+
 
                 <!-- Groupe 4 -->
                 <details class="group">
-                    <summary class="cursor-pointer font-semibold flex justify-between items-center">
-                        ✍️ Bureau & papeterie
-                        <span class="group-open:rotate-180">▼</span>
-                    </summary>
-                    <ul class="ml-4 mt-2 space-y-1 text-gray-700">
-                        <li>Tapis de souris</li>
-                        <li>Outils de bureau personnalisés en contreplaqué</li>
-                        <li>Trophée personnalisé en plexiglass</li>
-                    </ul>
-                </details>
+    <summary class="cursor-pointer font-semibold flex justify-between items-center">
+        <a href="/catalogue?category=bureau-papeterie"
+           class="hover:text-orange-500">
+            ✍️ Bureau & papeterie
+        </a>
+        <span class="group-open:rotate-180">▼</span>
+    </summary>
 
-                <div class="text-gray-400 pt-2 border-t text-sm">
-                    + Autres catégories
-                </div>
+    <ul class="ml-4 mt-2 space-y-1 text-gray-700">
+        <li>
+            <a href="/catalogue?category=tapis-souris"
+               class="hover:text-orange-500">
+                Tapis de souris
+            </a>
+        </li>
+        <li>
+            <a href="/catalogue?category=outils-bureau"
+               class="hover:text-orange-500">
+                Outils de bureau personnalisés en contreplaqué
+            </a>
+        </li>
+        <li>
+            <a href="/catalogue?category=trophee"
+               class="hover:text-orange-500">
+                Trophée personnalisé en plexiglass
+            </a>
+        </li>
+    </ul>
+</details>
 
+
+                <a href="/catalogue"
+                 class="block text-gray-400 pt-2 border-t text-sm hover:text-orange-500">
+                  + Autres catégories
+                </a>
             </div>
         </aside>
 
