@@ -41,24 +41,23 @@ $imageMap = [
             <div class="p-3 space-y-3">
 
                 <!-- Groupe 1 -->
-                <details class="group">
+    <details class="group">
     <summary class="cursor-pointer font-semibold flex justify-between items-center">
-        <a href="/catalogue?category=telephones-accessoires"
-           class="hover:text-orange-500">
+        <span>
             📱 Téléphones & accessoires
-        </a>
+        </span>
         <span class="group-open:rotate-180">▼</span>
     </summary>
 
     <ul class="ml-4 mt-2 space-y-1 text-gray-700">
         <li>
-            <a href="/catalogue?category=telephones-accessoires"
+            <a href="/catalogue?category=coques-telephone"
                class="hover:text-orange-500">
                 Coques
             </a>
         </li>
         <li>
-            <a href="/catalogue?category=category=telephones-accessoires"
+            <a href="/catalogue?category=stickers"
                class="hover:text-orange-500">
                 Stickers
             </a>
