@@ -43,7 +43,7 @@ $imageMap = [
                 <!-- Groupe 1 -->
     <details class="group">
     <summary class="cursor-pointer font-semibold flex justify-between items-center">
-        <a href="/catalogue"
+        <a href="/catalogue?category=telephones-accessoires"
            class="hover:text-orange-500">
             📱 Téléphones & accessoires
         </a>
@@ -97,10 +97,10 @@ $imageMap = [
            Puzzle personnalisé
         </a>
     </li>
-    <li>
+<li>
     <a href="/catalogue?category=cadeaux-personnalises"
        class="hover:text-orange-500">
-       Sticker Vinyle Rectangle
+       Trophée personnalisé
     </a>
 </li>
 </ul>
@@ -166,12 +166,6 @@ $imageMap = [
             <a href="/catalogue?category=bureau-papeterie"
                class="hover:text-orange-500">
                 Outils de bureau personnalisés en contreplaqué
-            </a>
-        </li>
-        <li>
-            <a href="/catalogue?category=bureau-papeterie"
-               class="hover:text-orange-500">
-                Trophée personnalisé en plexiglass
             </a>
         </li>
     </ul>
