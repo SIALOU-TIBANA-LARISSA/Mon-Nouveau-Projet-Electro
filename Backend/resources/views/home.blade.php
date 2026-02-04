@@ -21,11 +21,11 @@
 
 
 
-    <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4">
+    <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4 relative z-10">
         Personnalisation sur mesure & Impression
     </h1>
 
-    <p id="hero-text" class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+    <p id="hero-text" class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto relative z-10">
         Créez des produits uniques : mugs, coques, textiles et goodies personnalisés
         pour vos cadeaux, événements et entreprises.
     </p>
@@ -34,7 +34,7 @@
    class="inline-block bg-orange-500 text-white font-semibold px-8 py-4 rounded-lg shadow
           transition transform duration-300
           hover:bg-orange-600 hover:scale-105
-          active:scale-95 cursor-pointer">
+          active:scale-95 cursor-pointer relative z-10">
     Voir le catalogue
 </a>
 
@@ -128,5 +128,46 @@
     </div>
 
 </section>
+
+<style>
+/* === IMAGES FLOTTANTES (FORCÉ) === */
+
+.floating-images {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.float {
+    position: absolute;
+    width: 14px !important;   /* TRÈS PETIT */
+    height: auto !important;
+    opacity: 0.2 !important;
+    filter: blur(0.5px);
+    animation: floatSlow 20s ease-in-out infinite;
+}
+
+/* positions */
+.float-1 { top: 10%; left: 6%; }
+.float-2 { bottom: 15%; left: 12%; }
+.float-3 { top: 18%; right: 10%; }
+.float-4 { bottom: 12%; right: 18%; }
+.float-5 { top: 55%; right: 40%; width: 12px !important; }
+.float-6 { top: 15%; right: 5%; width: 10px !important; }
+
+@keyframes floatSlow {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+    .floating-images { display: none; }
+}
+</style>
+
+
+
 
 @endsection
