@@ -145,7 +145,7 @@
     opacity: 0.9 !important;     /* couleurs visibles */
     filter: blur(0.4px);         /* effet arrière-plan */
     mix-blend-mode: multiply;    /* fusion avec la bannière */
-    animation: floatSlow 14s ease-in-out infinite;
+    animation: floatSlow 8s ease-in-out infinite;
 }
 
 
