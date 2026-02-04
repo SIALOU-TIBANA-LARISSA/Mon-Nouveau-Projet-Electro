@@ -43,9 +43,10 @@ $imageMap = [
                 <!-- Groupe 1 -->
     <details class="group">
     <summary class="cursor-pointer font-semibold flex justify-between items-center">
-        <span>
+        <a href="/catalogue"
+           class="hover:text-orange-500">
             📱 Téléphones & accessoires
-        </span>
+        </a>
         <span class="group-open:rotate-180">▼</span>
     </summary>
 
@@ -64,6 +65,7 @@ $imageMap = [
         </li>
     </ul>
 </details>
+
 
 
                 <!-- Groupe 2 -->
@@ -101,10 +103,8 @@ $imageMap = [
        Sticker Vinyle Rectangle
     </a>
 </li>
-
 </ul>
-
-                </details>
+ </details>
 
                 <!-- Groupe 3 -->
                 <details class="group">
