@@ -147,7 +147,7 @@
         price: {{ $product['price'] }},
         image: '{{ $product['main_image_url'] ?? '' }}'
     })"
-    class="bg-orange-500 text-white px-6 py-3 rounded font-semibold
+    class="bg-orange-500 text-white px-5 py-2 rounded-full font-semibold
            hover:bg-orange-600 transition"
 >
     Ajouter au panier

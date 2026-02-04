@@ -30,7 +30,7 @@
     </p>
 
     <a href="/catalogue"
-   class="inline-block bg-orange-500 text-white font-semibold px-8 py-4 rounded-lg shadow
+   class="inline-block bg-orange-500 text-white font-semibold px-5 py-2 rounded-full shadow
           transition transform duration-300
           hover:bg-orange-600 hover:scale-105
           active:scale-95 cursor-pointer relative z-10">

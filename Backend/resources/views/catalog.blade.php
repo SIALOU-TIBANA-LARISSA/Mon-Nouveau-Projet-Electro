@@ -221,12 +221,6 @@ $imageMap = [
                          alt="{{ $product->name }}"
                         >
 
-
-
-
-
-
-
                         <div class="p-4">
                             <h2 class="font-semibold text-sm">
                                 {{ $product['name'] }}
@@ -237,7 +231,7 @@ $imageMap = [
                             </div>
 
                             <a href="{{ route('product.details', $product['id']) }}"
-                               class="mt-3 block text-center bg-orange-500 text-white py-2 rounded hover:bg-orange-600">
+                               class="mt-3 block text-center bg-orange-500 text-white py-2 rounded-full hover:bg-orange-600">
                                 Voir détails
                             </a>
 
@@ -248,7 +242,7 @@ $imageMap = [
                               price: {{ $product['price'] }},
                               image: '{{ asset($product['main_image_url']) }}'
                               })"
-                              class="mt-2 w-full bg-gray-200 py-2 rounded hover:bg-gray-300"
+                              class="mt-2 w-full bg-gray-200 py-2 rounded-full hover:bg-gray-300"
                               >
                               Ajouter au panier
                             </button>
