@@ -52,13 +52,13 @@ $imageMap = [
 
     <ul class="ml-4 mt-2 space-y-1 text-gray-700">
         <li>
-            <a href="/catalogue?category=coques"
+            <a href="/catalogue?category=telephones-accessoires"
                class="hover:text-orange-500">
                 Coques
             </a>
         </li>
         <li>
-            <a href="/catalogue?category=stickers"
+            <a href="/catalogue?category=category=telephones-accessoires"
                class="hover:text-orange-500">
                 Stickers
             </a>
@@ -79,25 +79,25 @@ $imageMap = [
 
                     <ul class="ml-4 mt-2 space-y-1 text-gray-700">
     <li>
-        <a href="/catalogue?category=mugs"
+        <a href="/catalogue?category=cadeaux-personnalises"
            class="hover:text-orange-500">
            Mugs
         </a>
     </li>
     <li>
-        <a href="/catalogue?category=boites-bijoux"
+        <a href="/catalogue?category=cadeaux-personnalises"
            class="hover:text-orange-500">
            Boîtes à bijoux
         </a>
     </li>
     <li>
-        <a href="/catalogue?category=puzzle-personnalise"
+        <a href="/catalogue?category=cadeaux-personnalises"
            class="hover:text-orange-500">
            Puzzle personnalisé
         </a>
     </li>
     <li>
-    <a href="/catalogue?category=sticker-vinyle-rectangle"
+    <a href="/catalogue?category=cadeaux-personnalises"
        class="hover:text-orange-500">
        Sticker Vinyle Rectangle
     </a>
@@ -119,25 +119,25 @@ $imageMap = [
 
     <ul class="ml-4 mt-2 space-y-1 text-gray-700">
         <li>
-            <a href="/catalogue?category=cadres-photo"
+            <a href="/catalogue?category=maison-deco"
                class="hover:text-orange-500">
                 Cadres photo
             </a>
         </li>
         <li>
-            <a href="/catalogue?category=sapin-noel"
+            <a href="/catalogue?category=maison-deco"
                class="hover:text-orange-500">
                 Sapin de Noël décoratif personnalisé
             </a>
         </li>
         <li>
-            <a href="/catalogue?category=vase-decoratif"
+            <a href="/catalogue?category=maison-deco"
                class="hover:text-orange-500">
                 Vase décoratif
             </a>
         </li>
         <li>
-            <a href="/catalogue?category=decoration-noel"
+            <a href="/catalogue?category=maison-deco"
                class="hover:text-orange-500">
                 Décoration de Noël personnalisée
             </a>
@@ -158,19 +158,19 @@ $imageMap = [
 
     <ul class="ml-4 mt-2 space-y-1 text-gray-700">
         <li>
-            <a href="/catalogue?category=tapis-souris"
+            <a href="/catalogue?category=bureau-papeterie"
                class="hover:text-orange-500">
                 Tapis de souris
             </a>
         </li>
         <li>
-            <a href="/catalogue?category=outils-bureau"
+            <a href="/catalogue?category=bureau-papeterie"
                class="hover:text-orange-500">
                 Outils de bureau personnalisés en contreplaqué
             </a>
         </li>
         <li>
-            <a href="/catalogue?category=trophee"
+            <a href="/catalogue?category=bureau-papeterie"
                class="hover:text-orange-500">
                 Trophée personnalisé en plexiglass
             </a>
