@@ -21,13 +21,19 @@
     z-index: 0;
     pointer-events: none;
 }
+  
 
 .float {
     position: absolute;
-    width: 45px;      /* petites images */
-    opacity: 0.35;    /* discrètes */
-    animation: floatSlow 14s ease-in-out infinite;
+    width: 38px;          /* TOUT PETIT */
+    max-width: 38px;      /* sécurité */
+    height: auto;
+    opacity: 0.25;        /* très discret */
+    animation: floatSlow 18s ease-in-out infinite;
+    z-index: 0;
+    filter: blur(0.5px);  /* effet arrière-plan */
 }
+
 
 /* POSITIONS DES IMAGES */
 .float-1 { top: 12%; left: 8%; }
@@ -35,7 +41,14 @@
 .float-3 { top: 20%; right: 12%; }
 .float-4 { bottom: 15%; right: 20%; }
 .float-5 { top: 55%; right: 38%; width: 35px; }
-.float-6 { top: 35%; left: 30%; width: 40px; }
+
+.float-6 {
+    width: 30px;          /* encore plus petite */
+    top: 18%;
+    right: 6%;
+    opacity: 0.2;
+}
+
 
 /* ANIMATION DOUCE */
 @keyframes floatSlow {
