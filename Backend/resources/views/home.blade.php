@@ -145,7 +145,7 @@
     opacity: 0.9 !important;     /* couleurs visibles */
     filter: blur(0.4px);         /* effet arrière-plan */
     mix-blend-mode: multiply;    /* fusion avec la bannière */
-    animation: floatSlow 20s ease-in-out infinite;
+    animation: floatSlow 14s ease-in-out infinite;
 }
 
 
@@ -160,10 +160,23 @@
 
 
 @keyframes floatSlow {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-12px) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-24px) rotate(2deg);
+    }
+    75% {
+        transform: translateY(-12px) rotate(-1deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
 }
+
 
 @media (max-width: 640px) {
     .floating-images { display: none; }
