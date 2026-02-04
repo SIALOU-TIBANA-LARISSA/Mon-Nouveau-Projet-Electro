@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
+
 /*
 |--------------------------------------------------------------------------
 | FRONTEND (PAGES PUBLIQUES)
@@ -23,10 +24,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/catalogue', function () {
-    return view('catalog');
 
-});
+Route::get('/catalogue', [ProductController::class, 'catalogue']);
+
 
 Route::get('/cart', function () {
     return view('cart');

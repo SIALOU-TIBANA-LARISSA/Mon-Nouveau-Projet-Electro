@@ -7,18 +7,31 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-class ProductController extends Controller
-{
+
     /**
      * Display a listing of the resource.
      * Accessible par tous les utilisateurs (publique).
      */
     
 
-public function catalogue()
+class ProductController extends Controller
 {
-    $products = Product::where('is_published', true)
-        ->paginate(12); 
+
+
+public function catalogue(Request $request)
+{
+    $query = Product::where('is_published', true);
+
+    // 🔹 Filtrage par catégorie (via slug)
+    if ($request->filled('category')) {
+        $category = Category::where('slug', $request->category)->first();
+
+        if ($category) {
+            $query->where('category_id', $category->id);
+        }
+    }
+
+    $products = $query->paginate(12);
 
     return view('catalog', [
         'products' => $products,
