@@ -9,3 +9,44 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+
+/* ===============================
+   IMAGES FLOTTANTES – PAGE ACCUEIL
+   =============================== */
+
+.floating-images {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.float {
+    position: absolute;
+    width: 45px;      /* petites images */
+    opacity: 0.35;    /* discrètes */
+    animation: floatSlow 14s ease-in-out infinite;
+}
+
+/* POSITIONS DES IMAGES */
+.float-1 { top: 12%; left: 8%; }
+.float-2 { bottom: 18%; left: 14%; }
+.float-3 { top: 20%; right: 12%; }
+.float-4 { bottom: 15%; right: 20%; }
+.float-5 { top: 55%; right: 38%; width: 35px; }
+.float-6 { top: 35%; left: 30%; width: 40px; }
+
+/* ANIMATION DOUCE */
+@keyframes floatSlow {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+/* MOBILE : on cache */
+@media (max-width: 640px) {
+    .floating-images {
+        display: none;
+    }
+}

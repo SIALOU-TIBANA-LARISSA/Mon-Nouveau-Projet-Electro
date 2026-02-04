@@ -5,7 +5,21 @@
 @section('content')
 
 <!-- ================= HERO ================= -->
-<section class="bg-orange-50 py-20 text-center">
+<section class="bg-orange-50 py-20 text-center relative overflow-hidden">
+
+<!-- IMAGES FLOTTANTES (ARRIÈRE-PLAN) -->
+<div class="floating-images">
+
+    <img src="{{ asset('images/products/deco-noel.avif') }}" class="float float-1">
+    <img src="{{ asset('images/products/vase.avif') }}" class="float float-2">
+    <img src="{{ asset('images/products/boite-a-bijoux.avif') }}" class="float float-3">
+    <img src="{{ asset('images/products/mug-blanc.avif') }}" class="float float-4">
+    <img src="{{ asset('images/products/sticker-vinyle-rond.avif') }}" class="float float-5">
+     <img src="{{ asset('images/products/coque-iphone-15-pro.avif') }}" class="float float-6">
+
+</div>
+
+
 
     <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4">
         Personnalisation sur mesure & Impression
