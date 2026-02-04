@@ -155,7 +155,8 @@
 .float-3 { top: 18%; right: 10%; }
 .float-4 { bottom: 12%; right: 18%; }
 .float-5 { top: 55%; right: 40%; width: 46px !important; }
-.float-6 { top: 6%; right: 12%; width: 50px !important; }
+.float-6 { top: 4%; left: 42%; width: 50px !important; }
+
 
 
 @keyframes floatSlow {
