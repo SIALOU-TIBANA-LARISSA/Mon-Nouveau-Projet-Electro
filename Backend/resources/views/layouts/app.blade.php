@@ -13,7 +13,7 @@
 #loader {
     position: fixed;
     inset: 0;
-    background: #ffffff;
+    background: #F9FAFB;  /* couleur gris très clair */
     display: flex;
     align-items: center;
     justify-content: center;
