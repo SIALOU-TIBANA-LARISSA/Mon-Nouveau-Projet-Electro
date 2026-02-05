@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-function showCartMessage() {
+window.showCartMessage = function () {
     const msg = document.getElementById('cart-message');
     if (!msg) return;
 
@@ -240,9 +240,10 @@ function showCartMessage() {
 
     setTimeout(() => {
         msg.style.display = 'none';
-    }, 2000); // 2 secondes
-}
+    }, 2000);
+};
 </script>
+
 
 <!-- ========================= -->
 <!-- 1️⃣ PANIER (DOIT ÊTRE 1ER) -->
@@ -396,13 +397,17 @@ window.addEventListener("load", function () {
 });
 </script>
 
-
-
-<!-- MESSAGE PANIER -->
 <div id="cart-message"
-     style="display:none; position:fixed; top:20px; right:20px;
-            background:#22c55e; color:white; padding:12px 18px;
-            border-radius:8px; z-index:9999; font-weight:600;">
+     style="display:none;
+            position:fixed;
+            top:20px;
+            right:20px;
+            background:#22c55e;  
+            color:white;
+            padding:12px 18px;
+            border-radius:8px;
+            z-index:9999;
+            font-weight:600;">
     Produit ajouté au panier avec succès ✅
 </div>
 
