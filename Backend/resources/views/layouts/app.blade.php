@@ -79,6 +79,8 @@
             <a href="/catalogue" class="hover:text-orange-500">Catalogue</a>
 
             <a href="/cart" class="hover:text-orange-500">🛒 Panier</a>
+            <a href="/contact" class="hover:text-orange-500">Contact</a>
+
 
 
             <!-- UTILISATEUR NON CONNECTÉ -->
