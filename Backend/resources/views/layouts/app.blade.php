@@ -8,8 +8,55 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<style>
+/* ===== LOADER ===== */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-logo {
+    width: 90px;          /* taille du logo */
+    margin-bottom: 20px;
+}
+
+/* SPINNER */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #f97316; /* orange */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+</style>
+
+
 </head>
 <body class="bg-gray-100 text-base md:text-lg">
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="loader-content">
+            <img src="{{ asset('images/logo.avif') }}" alt="Logo" class="loader-logo">
+            <div class="spinner"></div>
+        </div>
+    </div>
 
 
 <header class="bg-white shadow">
@@ -309,6 +356,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1200);
     }
 
+});
+</script>
+
+<script>
+window.addEventListener("load", function () {
+    setTimeout(() => {
+        const loader = document.getElementById("loader");
+        if (loader) {
+            loader.style.opacity = "0";
+            loader.style.transition = "opacity 0.5s ease";
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 500);
+        }
+    }, 2000); // 2 seconde
 });
 </script>
 
