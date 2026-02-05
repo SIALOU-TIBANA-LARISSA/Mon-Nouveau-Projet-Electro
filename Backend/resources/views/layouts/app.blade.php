@@ -231,6 +231,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+function showCartMessage() {
+    const msg = document.getElementById('cart-message');
+    if (!msg) return;
+
+    msg.style.display = 'block';
+
+    setTimeout(() => {
+        msg.style.display = 'none';
+    }, 2000); // 2 secondes
+}
+</script>
 
 <!-- ========================= -->
 <!-- 1️⃣ PANIER (DOIT ÊTRE 1ER) -->
@@ -384,18 +396,6 @@ window.addEventListener("load", function () {
 });
 </script>
 
-<script>
-function showCartMessage() {
-    const msg = document.getElementById('cart-message');
-    if (!msg) return;
-
-    msg.style.display = 'block';
-
-    setTimeout(() => {
-        msg.style.display = 'none';
-    }, 2000); // 2 secondes
-}
-</script>
 
 
 <!-- MESSAGE PANIER -->
