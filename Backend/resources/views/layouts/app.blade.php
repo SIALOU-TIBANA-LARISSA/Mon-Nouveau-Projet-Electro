@@ -363,8 +363,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 window.addEventListener("load", function () {
+    const loader = document.getElementById("loader");
+
+    // Si ce n'est PAS la page d'accueil, on cache immédiatement
+    if (window.location.pathname !== "/") {
+        if (loader) loader.style.display = "none";
+        return;
+    }
+
+    // Animation uniquement sur la page d'accueil
     setTimeout(() => {
-        const loader = document.getElementById("loader");
         if (loader) {
             loader.style.opacity = "0";
             loader.style.transition = "opacity 0.5s ease";
@@ -372,9 +380,10 @@ window.addEventListener("load", function () {
                 loader.style.display = "none";
             }, 500);
         }
-    }, 2000); // 2 seconde
+    }, 2000); // durée du loader accueil
 });
 </script>
+
 
 </body>
 </html>
