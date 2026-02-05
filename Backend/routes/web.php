@@ -14,6 +14,10 @@ use App\Models\Product;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 /*
 |--------------------------------------------------------------------------
 | FRONTEND (PAGES PUBLIQUES)
@@ -153,3 +157,5 @@ Route::get('/product/{id}', [ProductController::class, 'show'])
 
     Route::get('/product/{id}', [ProductController::class, 'showPage'])
     ->name('product.details');
+
+    
