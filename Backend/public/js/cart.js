@@ -34,8 +34,13 @@ function addToCart(product) {
     }
 
     saveCart(cart);
-    //alert("Produit ajouté au panier");
+
+    // ✅ MESSAGE DE CONFIRMATION
+    if (typeof showCartMessage === "function") {
+        showCartMessage();
+    }
 }
+
 
 /* --------- SUPPRESSION --------- */
 
@@ -97,20 +102,3 @@ document.addEventListener("click", function (e) {
     addToCart(product);
 });
 
-// ===============================
-// AJOUT AU PANIER DEPUIS LE CATALOGUE
-// ===============================
-
-document.addEventListener("click", function (e) {
-    const btn = e.target.closest(".add-to-cart");
-    if (!btn) return;
-
-    const product = {
-        id: btn.dataset.id,
-        name: btn.dataset.name,
-        price: Number(btn.dataset.price),
-        image: btn.dataset.image
-    };
-
-    addToCart(product);
-});
