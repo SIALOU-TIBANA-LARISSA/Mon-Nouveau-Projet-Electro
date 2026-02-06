@@ -48,7 +48,8 @@
 
 
 </head>
-<body class="bg-gray-100 text-base md:text-lg">
+<body class="bg-gray-100 text-[16px] sm:text-[17px] md:text-lg">
+
 
     <!-- LOADER -->
     <div id="loader">
