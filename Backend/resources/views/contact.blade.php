@@ -103,7 +103,7 @@
                 Envoyez-nous un message
             </h2>
 
-            <form class="space-y-4">
+            <form class="space-y-4" onsubmit="event.preventDefault(); showContactMessage();">
 
                 <div>
                     <label class="block text-sm font-semibold mb-1">
@@ -136,6 +136,11 @@
                         class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">
                     Envoyer
                 </button>
+ 
+                <div id="contact-message"
+                   class="hidden mt-4 bg-green-500 text-white text-sm px-4 py-2 rounded">
+                    Message envoyé ✔️ (fonctionnalité bientôt disponible)
+                </div>
 
             </form>
 
@@ -148,5 +153,19 @@
     </div>
 
 </section>
+
+<script>
+function showContactMessage() {
+    const msg = document.getElementById('contact-message');
+    if (!msg) return;
+
+    msg.classList.remove('hidden');
+
+    setTimeout(() => {
+        msg.classList.add('hidden');
+    }, 3000);
+}
+</script>
+
 
 @endsection
