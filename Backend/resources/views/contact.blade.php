@@ -103,15 +103,17 @@
                 Envoyez-nous un message
             </h2>
 
-            <form class="space-y-4" onsubmit="event.preventDefault(); showContactMessage();">
+            <form class="space-y-4" id="contactForm">
+             @csrf
 
                 <div>
                     <label class="block text-sm font-semibold mb-1">
                         Nom
                     </label>
                     <input type="text"
-                           class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-orange-200"
-                           placeholder="Votre nom">
+                      name="name"
+                      class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-orange-200"
+                      placeholder="Votre nom">
                 </div>
 
                 <div>
@@ -119,8 +121,9 @@
                         Email
                     </label>
                     <input type="email"
-                           class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-orange-200"
-                           placeholder="Votre email">
+                     name="email"
+                     class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-orange-200"
+                     placeholder="Votre email">
                 </div>
 
                 <div>
@@ -128,8 +131,9 @@
                         Message
                     </label>
                     <textarea rows="4"
-                              class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-orange-200"
-                              placeholder="Votre message"></textarea>
+                     name="message"
+                     class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-orange-200"
+                     placeholder="Votre message"></textarea>
                 </div>
 
                 <button type="submit"
@@ -155,16 +159,26 @@
 </section>
 
 <script>
-function showContactMessage() {
-    const msg = document.getElementById('contact-message');
-    if (!msg) return;
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    msg.classList.remove('hidden');
-
-    setTimeout(() => {
-        msg.classList.add('hidden');
-    }, 3000);
-}
+    fetch('/contact/send', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+            'Accept': 'application/json'
+        },
+        body: new FormData(this)
+    })
+    .then(res => res.json())
+    .then(() => {
+        alert('Message envoyé avec succès ✅');
+        this.reset();
+    })
+    .catch(() => {
+        alert('Erreur lors de l’envoi ❌');
+    });
+});
 </script>
 
 

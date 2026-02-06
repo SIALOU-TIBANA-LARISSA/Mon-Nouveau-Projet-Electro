@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/contact', function () {
     return view('contact');
@@ -158,4 +159,5 @@ Route::get('/product/{id}', [ProductController::class, 'show'])
     Route::get('/product/{id}', [ProductController::class, 'showPage'])
     ->name('product.details');
 
-    
+Route::post('/contact/send', [ContactController::class, 'send']);
+ 
