@@ -102,6 +102,12 @@
             <h2 class="text-xl font-bold mb-4">
                 Envoyez-nous un message
             </h2>
+ 
+            <div id="contact-success"
+              class="hidden mb-4 p-4 rounded-lg bg-green-100 text-green-800 font-semibold">
+               Message envoyé avec succès ✅
+            </div>
+
 
             <form class="space-y-4" id="contactForm">
              @csrf
@@ -139,28 +145,21 @@
                 <button type="submit"
                         class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">
                     Envoyer
-                </button>
- 
-                <div id="contact-message"
-                   class="hidden mt-4 bg-green-500 text-white text-sm px-4 py-2 rounded">
-                    Message envoyé ✔️ (fonctionnalité bientôt disponible)
-                </div>
+                 </button>
 
             </form>
-
-            <p class="text-xs text-gray-400 mt-4">
-                * L’envoi par email sera activé prochainement.
-            </p>
 
         </div>
 
     </div>
 
 </section>
-
 <script>
 document.getElementById('contactForm').addEventListener('submit', function (e) {
     e.preventDefault();
+
+    const form = this;
+    const successBox = document.getElementById('contact-success');
 
     fetch('/contact/send', {
         method: 'POST',
@@ -168,15 +167,22 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
             'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
             'Accept': 'application/json'
         },
-        body: new FormData(this)
+        body: new FormData(form)
     })
-    .then(res => res.json())
+    .then(response => {
+        if (!response.ok) throw new Error('Erreur');
+        return response.json();
+    })
     .then(() => {
-        alert('Message envoyé avec succès ✅');
-        this.reset();
+        form.reset();
+        successBox.classList.remove('hidden');
+
+        setTimeout(() => {
+            successBox.classList.add('hidden');
+        }, 4000);
     })
     .catch(() => {
-        alert('Erreur lors de l’envoi ❌');
+        console.error('Erreur envoi contact');
     });
 });
 </script>
