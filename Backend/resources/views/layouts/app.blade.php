@@ -48,7 +48,7 @@
 
 
 </head>
-<body class="bg-gray-100 text-[16px] sm:text-[17px] md:text-lg">
+<body class="bg-gray-100 text-[19px] sm:text-[17px] md:text-lg">
 
 
     <!-- LOADER -->
