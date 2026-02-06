@@ -16,23 +16,23 @@ class ContactController extends Controller
         ]);
 
         // Email vers TOI (test)
-        Mail::raw(
-            "Nom : {$request->name}\nEmail : {$request->email}\n\nMessage :\n{$request->message}",
-            function ($mail) use ($request) {
-                $mail->to('sialoutibanalarissa@gmail.com')
-                     ->subject('📩 Nouveau message – Contact H-ELECTRO')
-                     ->replyTo($request->email);
-            }
-        );
+        //Mail::raw(
+         //   "Nom : {$request->name}\nEmail : {$request->email}\n\nMessage :\n{$request->message}",
+        //    function ($mail) use ($request) {
+         //       $mail->to('sialoutibanalarissa@gmail.com')
+         //            ->subject('📩 Nouveau message – Contact H-ELECTRO')
+         //            ->replyTo($request->email);
+         //   }
+        //);
 
         // Copie vers le client
-        Mail::raw(
-            "Bonjour {$request->name},\n\nNous avons bien reçu votre message :\n\n{$request->message}\n\n— H-ELECTRO",
-            function ($mail) use ($request) {
-                $mail->to($request->email)
-                     ->subject('✅ Message reçu – H-ELECTRO');
-            }
-        );
+        //Mail::raw(
+        //    "Bonjour {$request->name},\n\nNous avons bien reçu votre message :\n\n{$request->message}\n\n— H-ELECTRO",
+        //    function ($mail) use ($request) {
+        //        $mail->to($request->email)
+        //             ->subject('✅ Message reçu – H-ELECTRO');
+        //    }
+        //);
 
         return response()->json([
             'success' => true,
