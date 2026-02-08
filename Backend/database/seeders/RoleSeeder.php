@@ -13,28 +13,33 @@ class RoleSeeder extends Seeder
      * Insère les rôles initiaux : Admin, Designer, Opérateur.
      */
     public function run(): void
-    {
-        $now = Carbon::now();
+{
+    $now = Carbon::now();
 
-        DB::table('roles')->insert([
+    $roles = [
+        [
+            'name' => 'Admin',
+            'description' => 'Administrateur avec accès complet au back-office et aux paramètres système.',
+        ],
+        [
+            'name' => 'Designer',
+            'description' => 'Gère les personnalisations (logos, textes) et l\'envoi en production.',
+        ],
+        [
+            'name' => 'Opérateur',
+            'description' => 'Gère les commandes, l\'emballage et l\'expédition des produits finis.',
+        ],
+    ];
+
+    foreach ($roles as $role) {
+        DB::table('roles')->updateOrInsert(
+            ['name' => $role['name']],   // clé unique
             [
-                'name' => 'Admin',
-                'description' => 'Administrateur avec accès complet au back-office et aux paramètres système.',
-                'created_at' => $now,
+                'description' => $role['description'],
                 'updated_at' => $now,
-            ],
-            [
-                'name' => 'Designer',
-                'description' => 'Gère les personnalisations (logos, textes) et l\'envoi en production.',
                 'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'name' => 'Opérateur',
-                'description' => 'Gère les commandes, l\'emballage et l\'expédition des produits finis.',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-        ]);
+            ]
+        );
     }
+ }
 }
