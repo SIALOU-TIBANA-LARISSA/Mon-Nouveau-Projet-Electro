@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Password;
 
 Route::get('/contact', function () {
     return view('contact');
@@ -161,3 +162,41 @@ Route::get('/product/{id}', [ProductController::class, 'show'])
 
 Route::post('/contact/send', [ContactController::class, 'send']);
  
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
+
+Route::post('/forgot-password', function (\Illuminate\Http\Request $request) {
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return back()->with('status', __($status));
+})->name('password.email');
+
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/reset-password', function (\Illuminate\Http\Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => bcrypt($password),
+            ])->save();
+        }
+    );
+
+    return $status == Password::PASSWORD_RESET
+        ? redirect('/login')->with('status', __($status))
+        : back()->withErrors(['email' => __($status)]);
+})->name('password.update');

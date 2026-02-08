@@ -30,6 +30,12 @@
     </button>
 
     <p id="loginError" class="text-red-500 mt-3 hidden"></p>
+
+    <a href="{{ route('password.request') }}"
+   class="text-sm text-orange-500 hover:underline">
+   Mot de passe oublié ?
+</a>
+
 </form>
 
 </div>
