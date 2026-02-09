@@ -11,73 +11,67 @@
 
     <ul class="space-y-3 text-gray-700">
 
-        {{-- Votre compte --}}
-        <li>
-            <a href="/account"
-               class="block px-2 py-1 rounded
-               {{ request()->is('account') ? 'text-orange-600 font-semibold bg-orange-50' : 'hover:text-orange-500' }}">
-                Votre compte
-            </a>
-        </li>
+<ul class="space-y-3 text-gray-700">
 
-        {{-- Vos commandes --}}
-        <li>
-            <a href="/my-orders"
-               class="block px-2 py-1 rounded
-               {{ request()->is('my-orders*') ? 'text-orange-600 font-semibold bg-orange-50' : 'hover:text-orange-500' }}">
-                Vos commandes
-            </a>
-        </li>
+<li>
+<a href="{{ route('account') }}"
+class="block px-2 py-1 rounded {{ request()->is('account') ? 'text-orange-600 font-semibold bg-orange-50' : 'hover:text-orange-500' }}">
+Votre compte
+</a>
+</li>
 
-        {{-- Boîte de réception --}}
-        <li>
-            <a href="#"
-               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
-                Boîte de réception
-            </a>
-        </li>
+<li>
+<a href="{{ route('account.orders') }}"
+class="block px-2 py-1 rounded {{ request()->is('my-orders*') ? 'text-orange-600 font-semibold bg-orange-50' : 'hover:text-orange-500' }}">
+Vos commandes
+</a>
+</li>
 
-        {{-- Avis --}}
-        <li>
-            <a href="#"
-               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
-                Vos avis en attente
-            </a>
-        </li>
+<li>
+<a href="{{ route('account.messages') }}"
+class="block px-2 py-1 hover:text-orange-500">
+Boîte de réception
+</a>
+</li>
 
-        {{-- Bons --}}
-        <li>
-            <a href="#"
-               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
-                Bons d'achat
-            </a>
-        </li>
+<li>
+<a href="{{ route('account.reviews') }}"
+class="block px-2 py-1 hover:text-orange-500">
+Vos avis en attente
+</a>
+</li>
 
-        {{-- Favoris --}}
-        <li>
-            <a href="#"
-               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
-                Favoris
-            </a>
-        </li>
+<li>
+<a href="{{ route('account.vouchers') }}"
+class="block px-2 py-1 hover:text-orange-500">
+Bons d'achat
+</a>
+</li>
 
-        {{-- Vendeurs --}}
-        <li>
-            <a href="#"
-               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
-                Vendeurs suivis
-            </a>
-        </li>
+<li>
+<a href="{{ route('account.favorites') }}"
+class="block px-2 py-1 hover:text-orange-500">
+Favoris
+</a>
+</li>
 
-        {{-- Vu récemment --}}
-        <li>
-            <a href="#"
-               class="block px-2 py-1 hover:text-orange-500 cursor-not-allowed">
-                Vu récemment
-            </a>
-        </li>
+<li>
+<a href="{{ route('account.followed-sellers') }}"
+class="block px-2 py-1 hover:text-orange-500">
+Vendeurs suivis
+</a>
+</li>
 
-    </ul>
+<li>
+<a href="{{ route('account.recent') }}"
+class="block px-2 py-1 hover:text-orange-500">
+Vu récemment
+</a>
+</li>
+
+</ul>
+
+    
 </aside>
 
 

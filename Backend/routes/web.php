@@ -200,3 +200,49 @@ Route::post('/reset-password', function (\Illuminate\Http\Request $request) {
         ? redirect('/login')->with('status', __($status))
         : back()->withErrors(['email' => __($status)]);
 })->name('password.update');
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/account', function () {
+        return view('account.index');
+    })->name('account');
+
+    Route::get('/my-orders', function () {
+        return view('account.orders');
+    })->name('account.orders');
+
+    Route::get('/account/messages', function () {
+        return view('account.messages');
+    })->name('account.messages');
+
+    Route::get('/account/reviews', function () {
+        return view('account.reviews');
+    })->name('account.reviews');
+
+    Route::get('/account/vouchers', function () {
+        return view('account.vouchers');
+    })->name('account.vouchers');
+
+    Route::get('/account/favorites', function () {
+        return view('account.favorites');
+    })->name('account.favorites');
+
+    Route::get('/account/followed-sellers', function () {
+        return view('account.followed-sellers');
+    })->name('account.followed-sellers');
+
+    Route::get('/account/recent', function () {
+        return view('account.recent');
+    })->name('account.recent');
+
+    Route::get('/account/addresses', function () {
+        return view('account.addresses');
+    })->name('account.addresses');
+
+    Route::get('/account/preferences', function () {
+        return view('account.preferences');
+    })->name('account.preferences');
+
+});
+
