@@ -201,9 +201,6 @@ Route::post('/reset-password', function (\Illuminate\Http\Request $request) {
         : back()->withErrors(['email' => __($status)]);
 })->name('password.update');
 
-
-Route::middleware('auth')->group(function () {
-
     Route::get('/account/messages', function () {
         return view('account.messages');
     })->name('account.messages');
@@ -228,4 +225,4 @@ Route::middleware('auth')->group(function () {
         return view('account.recent');
     })->name('account.recent');
 
-});
+
