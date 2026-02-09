@@ -10,12 +10,6 @@
             <h2 class="font-bold text-lg mb-4">Votre compte</h2>
 
             <ul class="space-y-3 text-gray-700">
-                <li>
-                    <a href="{{ route('account') }}"
-                       class="block px-2 py-1 rounded {{ request()->is('account') ? 'text-orange-600 font-semibold bg-orange-50' : 'hover:text-orange-500' }}">
-                        Votre compte
-                    </a>
-                </li>
 
                 <li>
                     <a href="{{ route('orders.index') }}"
