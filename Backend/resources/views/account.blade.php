@@ -71,8 +71,13 @@
 
                 <div class="bg-white border rounded-lg p-4">
                     <h3 class="font-semibold mb-2">INFORMATIONS PERSONNELLES</h3>
-                    <p class="font-medium">{{ auth()->user()->name }}</p>
-                    <p class="text-gray-600">{{ auth()->user()->email }}</p>
+                    @auth
+                     <p class="font-medium">{{ auth()->user()->name }}</p>
+                     <p class="text-gray-600">{{ auth()->user()->email }}</p>
+                    @else
+                    <p class="text-gray-500">Utilisateur non connecté</p>
+                    @endauth
+   
                 </div>
 
                 <div class="bg-white border rounded-lg p-4">
