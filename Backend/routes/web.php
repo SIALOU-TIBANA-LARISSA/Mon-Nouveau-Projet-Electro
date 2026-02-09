@@ -204,13 +204,6 @@ Route::post('/reset-password', function (\Illuminate\Http\Request $request) {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/account', function () {
-        return view('account.index');
-    })->name('account');
-
-    Route::get('/my-orders', function () {
-        return view('account.orders');
-    })->name('account.orders');
 
     Route::get('/account/messages', function () {
         return view('account.messages');
@@ -236,9 +229,6 @@ Route::middleware('auth')->group(function () {
         return view('account.recent');
     })->name('account.recent');
 
-    Route::get('/account/addresses', function () {
-        return view('account.addresses');
-    })->name('account.addresses');
 
     Route::get('/account/preferences', function () {
         return view('account.preferences');
