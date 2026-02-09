@@ -19,16 +19,18 @@ class UserSeeder extends Seeder
         $adminRole = DB::table('roles')->where('name', 'Admin')->first();
 
         if ($adminRole) {
-            DB::table('users')->insert([
-                'role_id' => $adminRole->id, // Liaison au rôle 'Admin'
-                'name' => 'Admin Electro V2',
-                'email' => 'admin@electrov2.com',
-                'email_verified_at' => Carbon::now(),
-                // Le mot de passe haché de 'password'
-                'password' => Hash::make('password'),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
+            DB::table('users')->updateOrInsert(
+        ['email' => 'admin@electrov2.com'], // clé unique
+        [
+        'role_id' => $adminRole->id,
+        'name' => 'Admin Electro V2',
+        'email_verified_at' => Carbon::now(),
+        'password' => Hash::make('password'),
+        'updated_at' => Carbon::now(),
+        'created_at' => Carbon::now(),
+        ]
+);
+
 
             $this->command->info('✅ Utilisateur Admin créé : admin@electrov2.com (Mot de passe: password)');
         } else {
