@@ -97,39 +97,49 @@ Route::get('/account/preferences', [AccountController::class, 'preferences'])
 | ADMIN
 |--------------------------------------------------------------------------
 */
-
-Route::get('/admin', [AdminController::class, 'dashboard']);
-
 Route::prefix('admin')->group(function () {
 
-    Route::get('/', [AdminDashboardController::class, 'index']);
-    Route::get('/dashboard', [AdminDashboardController::class, 'index']);
-
-    Route::get('/orders', [AdminOrderController::class, 'index']);
-    Route::get('/orders/{order}', [AdminOrderController::class, 'show']);
-    Route::put('/orders/{order}/status', [AdminOrderController::class, 'updateStatus']);
-
-    Route::get('/products', [AdminProductController::class, 'index']);
-    Route::get('/products/create', [AdminProductController::class, 'create']);
-    Route::post('/products', [AdminProductController::class, 'store']);
-    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit']);
-    Route::put('/products/{product}', [AdminProductController::class, 'update']);
-    Route::delete('/products/{product}', [AdminProductController::class, 'destroy']);
-
-    Route::get('/users', [AdminUserController::class, 'index']);
-});
-
-
-
-Route::prefix('admin')->group(function () {
-
+    // DASHBOARD
     Route::get('/', [AdminDashboardController::class, 'index'])
         ->name('admin.dashboard');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])
         ->name('admin.dashboard');
 
+    // PRODUITS
+    Route::get('/products', [AdminProductController::class, 'index'])
+        ->name('admin.products');
+
+    Route::get('/products/create', [AdminProductController::class, 'create'])
+        ->name('admin.products.create');
+
+    Route::post('/products', [AdminProductController::class, 'store'])
+        ->name('admin.products.store');
+
+    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])
+        ->name('admin.products.edit');
+
+    Route::put('/products/{product}', [AdminProductController::class, 'update'])
+        ->name('admin.products.update');
+
+    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])
+        ->name('admin.products.destroy');
+
+    // COMMANDES
+    Route::get('/orders', [AdminOrderController::class, 'index'])
+        ->name('admin.orders');
+
+    Route::get('/orders/{order}', [AdminOrderController::class, 'show'])
+        ->name('admin.orders.show');
+
+    Route::put('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])
+        ->name('admin.orders.updateStatus');
+
+    // UTILISATEURS
+    Route::get('/users', [AdminUserController::class, 'index'])
+        ->name('admin.users');
 });
+
 
 
 Route::get('/__fix-db', function () {
