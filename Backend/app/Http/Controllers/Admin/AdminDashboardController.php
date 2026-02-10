@@ -17,9 +17,12 @@ class AdminDashboardController extends Controller
             'paid_orders'    => Order::where('status', 'paid')->count(),
             'products'       => Product::count(),
             'users'          => User::count(),
+            
     ];
 
-    return view('admin.dashboard', compact('stats'));
+
+    $users = User::latest()->take(5)->get();
+    return view('admin.dashboard', compact('stats', 'users'));
 }
 }
 
