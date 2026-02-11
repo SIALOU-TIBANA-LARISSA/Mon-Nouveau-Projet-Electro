@@ -34,6 +34,7 @@ class AdminProductController extends Controller
         Product::create([
     'name' => $request->name,
     'slug' => Str::slug($request->name),
+    'sku' => strtoupper(Str::random(8)), // ✅ génération automatique
     'price' => $request->price,
     'description' => $request->description,
     'category_id' => $request->category_id,
@@ -63,6 +64,7 @@ class AdminProductController extends Controller
         $product->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
+            'sku' => $product->sku ?? strtoupper(Str::random(8)),
             'price' => $request->price,
             'description' => $request->description,
             'category_id' => $request->category_id,
