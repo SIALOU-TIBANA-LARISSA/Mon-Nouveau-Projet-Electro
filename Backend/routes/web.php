@@ -138,9 +138,11 @@ Route::prefix('admin')->group(function () {
     // UTILISATEURS
     Route::get('/users', [AdminUserController::class, 'index'])
         ->name('admin.users');
+
+    Route::delete('/orders/{order}', [AdminOrderController::class, 'destroy'])
+    ->name('admin.orders.destroy');
+
 });
-
-
 
 Route::get('/__fix-db', function () {
     Artisan::call('migrate --force');

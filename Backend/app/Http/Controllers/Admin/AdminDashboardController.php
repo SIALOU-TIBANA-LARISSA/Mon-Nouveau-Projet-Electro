@@ -24,5 +24,14 @@ class AdminDashboardController extends Controller
     $users = User::latest()->take(5)->get();
     return view('admin.dashboard', compact('stats', 'users'));
 }
+
+
+public function destroy(Order $order)
+{
+    $order->delete();
+    return redirect()->route('admin.orders')
+        ->with('success', 'Commande supprimée avec succès');
+}
+
 }
 
