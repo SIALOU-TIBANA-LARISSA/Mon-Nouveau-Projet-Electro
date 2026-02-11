@@ -29,7 +29,14 @@ class AdminProductController extends Controller
             'price' => 'required|numeric',
             'description' => 'required',
             'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,avif|max:2048',
         ]);
+
+    $imagePath = null;
+
+    if ($request->hasFile('image')) {
+    $imagePath = $request->file('image')->store('products', 'public');
+    }
 
         Product::create([
     'name' => $request->name,
@@ -40,7 +47,8 @@ class AdminProductController extends Controller
     'category_id' => $request->category_id,
     'is_published' => true,
     'stock_quantity' => 10,
-    'main_image_url' => '/images/products/default.avif',
+    'main_image_url' => $imagePath ? '/storage/' . $imagePath : '/images/products/default.avif',
+
 
      ]);
 

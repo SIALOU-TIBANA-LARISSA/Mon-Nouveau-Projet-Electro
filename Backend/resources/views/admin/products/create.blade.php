@@ -4,7 +4,7 @@
 
 <h1 class="text-2xl font-bold mb-6">➕ Ajouter un produit</h1>
 
-<form method="POST" action="{{ route('admin.products.store') }}">
+<form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
     @csrf
 
     <input name="name"
@@ -35,6 +35,8 @@
             </option>
         @endforeach
     </select>
+   
+    <input type="file" name="image" class="border p-2 w-full mb-3">
 
     <button type="submit"
             class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600">
