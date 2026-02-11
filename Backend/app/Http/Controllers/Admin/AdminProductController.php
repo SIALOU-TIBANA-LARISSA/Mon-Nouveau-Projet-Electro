@@ -68,8 +68,17 @@ class AdminProductController extends Controller
     }
 
     public function destroy(Product $product)
-{
-    dd('Destroy exécuté', $product->id);
+    {
+    if ($product->orderItems()->count() > 0) {
+        return redirect()->route('admin.products')
+            ->with('error', 'Impossible de supprimer ce produit car il est utilisé dans une commande.');
+    }
+
+    $product->delete();
+
+    return redirect()->route('admin.products')
+        ->with('success', 'Produit supprimé avec succès');
 }
+
 
 }
