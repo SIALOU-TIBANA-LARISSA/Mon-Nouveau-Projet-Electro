@@ -16,11 +16,11 @@ class AdminOrderController extends Controller
     }
     
     public function show(Order $order)
-{
-    $order->load('items.product', 'user');
+    {
+        $order->load('items.product', 'user');
 
-    return view('admin.orders.show', compact('order'));
-}
+        return view('admin.orders.show', compact('order'));
+    }
 
 public function updateStatus(Request $request, Order $order)
 {
@@ -36,6 +36,15 @@ public function updateStatus(Request $request, Order $order)
         ->route('admin.orders.show', $order->id)
         ->with('success', 'Statut de la commande mis à jour');
 }
+
+public function destroy(Order $order)
+{
+    $order->delete();
+
+    return redirect()->route('admin.orders')
+        ->with('success', 'Commande supprimée avec succès');
+}
+
 
 
 }
