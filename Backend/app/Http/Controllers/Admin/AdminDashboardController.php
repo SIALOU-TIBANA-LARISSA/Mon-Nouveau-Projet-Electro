@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Category;
 
 class AdminDashboardController extends Controller
 {
@@ -32,6 +33,26 @@ public function destroy(Order $order)
     return redirect()->route('admin.orders')
         ->with('success', 'Commande supprimée avec succès');
 }
+
+public function create()
+{
+    $categories = Category::all();
+    return view('admin.products.create', compact('categories'));
+}
+
+public function store(Request $request)
+{
+    Product::create([
+        'name' => $request->name,
+        'price' => $request->price,
+        'description' => $request->description,
+        'category_id' => $request->category_id,
+    ]);
+
+    return redirect()->route('admin.products')
+        ->with('success', 'Produit ajouté avec succès');
+}
+
 
 }
 
