@@ -38,6 +38,8 @@ class AdminProductController extends Controller
     'price' => $request->price,
     'description' => $request->description,
     'category_id' => $request->category_id,
+    'is_published' => true,
+
      ]);
 
 
