@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class AdminProductController extends Controller
 {
@@ -31,11 +32,14 @@ class AdminProductController extends Controller
         ]);
 
         Product::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'description' => $request->description,
-            'category_id' => $request->category_id,
-        ]);
+    'name' => $request->name,
+    'slug' => Str::slug($request->name),
+    'price' => $request->price,
+    'description' => $request->description,
+    'category_id' => $request->category_id,
+     ]);
+
+
 
         return redirect()->route('admin.products')
             ->with('success', 'Produit ajouté avec succès');
@@ -58,6 +62,7 @@ class AdminProductController extends Controller
 
         $product->update([
             'name' => $request->name,
+            'slug' => Str::slug($request->name),
             'price' => $request->price,
             'description' => $request->description,
             'category_id' => $request->category_id,
