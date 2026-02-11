@@ -39,6 +39,8 @@ class AdminProductController extends Controller
     'description' => $request->description,
     'category_id' => $request->category_id,
     'is_published' => true,
+    'stock_quantity' => 10,
+    'main_image_url' => '/images/products/default.avif',
 
      ]);
 
