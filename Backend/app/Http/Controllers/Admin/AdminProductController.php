@@ -24,7 +24,6 @@ class AdminProductController extends Controller
 
     public function store(Request $request)
     {
-       dd("STORE CALLED");
        
         $request->validate([
             'name' => 'required',
