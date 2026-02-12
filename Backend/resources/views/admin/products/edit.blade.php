@@ -17,8 +17,10 @@ class="border p-2 w-full mb-3">
 <textarea name="description"
 class="border p-2 w-full mb-3">{{ $product->description }}</textarea>
 
-<button class="bg-blue-500 text-white px-4 py-2 rounded">
-Modifier
+<button type="submit"
+        class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+    Enregistrer les modifications
 </button>
+
 </form>
 @endsection
