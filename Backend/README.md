@@ -1,59 +1,217 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# H-Crea & Design — Plateforme e-commerce
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Présentation du projet
 
-## About Laravel
+H-Crea & Design est une plateforme e-commerce dédiée à la vente de produits personnalisés. Elle permet aux clients de découvrir les produits disponibles, de consulter les modèles réalisés, de personnaliser leurs propres créations, de gérer leur panier et de passer des commandes en ligne.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Ce projet a été réalisé dans le cadre d'une expérience professionnelle afin de mettre en pratique mes compétences en développement web, en gestion de bases de données et en intégration d'API.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fonctionnalités principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Catalogue et consultation des produits
 
-## Learning Laravel
+* Affichage du catalogue de produits.
+* Organisation des produits par catégories.
+* Consultation des fiches détaillées des produits.
+* Recherche de produits.
+* Consultation des descriptions et des informations relatives aux produits.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 2. Visualisation des fichiers des produits déjà réalisés
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+La plateforme permet aux clients de visualiser les modèles numériques associés aux produits déjà réalisés.
 
-## Laravel Sponsors
+* Prise en charge des fichiers aux formats STL, SVG et DXF selon le modèle.
+* Visualisation des modèles disponibles sur la plateforme.
+* Prévisualisation des créations pour mieux apprécier leur rendu avant de passer commande.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. Personnalisation des créations
 
-### Premium Partners
+La plateforme propose un espace de personnalisation permettant aux clients d'importer leurs propres fichiers et de visualiser le rendu de leurs créations directement sur le site.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Les fonctionnalités comprennent :
 
-## Contributing
+* Importation de fichiers aux formats SVG et DXF.
+* Choix du rendu parmi quatre options : Bois, Plexiglass, Noir et Rouge.
+* Modification du rendu selon le matériau ou la couleur sélectionnée.
+* Prévisualisation de la création après personnalisation.
+* Visualisation du résultat avant de finaliser la commande.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Gestion des comptes clients
 
-## Code of Conduct
+* Création de compte client.
+* Connexion et déconnexion.
+* Authentification des utilisateurs.
+* Inscription par e-mail ou par SMS.
+* Vérification du compte par code OTP lorsque cette méthode est utilisée.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 5. Gestion du panier
 
-## Security Vulnerabilities
+* Ajout de produits au panier.
+* Consultation du panier.
+* Gestion des articles sélectionnés.
+* Préparation de la commande à partir du panier.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 6. Gestion des commandes
 
-## License
+* Passage de commandes.
+* Gestion des commandes depuis l'interface d'administration.
+* Consultation et suivi des commandes selon les fonctionnalités disponibles.
+* Annulation des commandes par les utilisateurs disposant des autorisations nécessaires.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 7. Page de contact
+
+La plateforme dispose d'une page « Contactez-nous » permettant aux visiteurs de contacter l'entreprise.
+
+* Formulaire de contact.
+* Saisie des informations nécessaires à la demande.
+* Envoi des messages à l'entreprise.
+
+### 8. Notifications par SMS
+
+Intégration d'une API SMS permettant de prendre en charge les fonctionnalités suivantes :
+
+* Inscription des clients par SMS.
+* Envoi de notifications par SMS.
+
+### 9. Interface d'administration
+
+L'interface d'administration permet de gérer les activités de la boutique et les utilisateurs autorisés à intervenir sur la plateforme.
+
+#### Gestion des clients
+
+* Consultation des comptes clients.
+* Gestion des informations des clients selon les fonctionnalités disponibles.
+
+#### Gestion des utilisateurs et des autorisations
+
+* Gestion des comptes des personnes autorisées à accéder à l'administration.
+* Gestion des rôles et des permissions.
+* Attribution des autorisations selon les responsabilités des utilisateurs.
+
+#### Gestion des produits et des catégories
+
+* Ajout de produits.
+* Modification des produits.
+* Suppression des produits.
+* Gestion des catégories.
+
+#### Gestion des commandes
+
+* Consultation et gestion des commandes.
+* Suivi des commandes.
+* Annulation des commandes selon les autorisations accordées.
+
+## Technologies utilisées
+
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+* Tailwind CSS
+* Laravel Blade
+* Vite
+
+### Backend
+
+* PHP
+* Laravel
+* API REST
+* Laravel Sanctum pour les fonctionnalités d'authentification concernées.
+
+### Base de données
+
+* **MySQL** : utilisé pour le développement local et le déploiement final sur Hostinger.
+* **PostgreSQL** : utilisé lors des premiers tests de déploiement sur Render.
+
+### Outils et services
+
+* Git et GitHub
+* Docker
+* FileZilla
+* Render pour les premiers tests de déploiement
+* Hostinger pour l'hébergement final
+
+## Intégration d'API
+
+### API SMS
+
+L'intégration d'une API SMS permet de prendre en charge l'inscription des clients par SMS et l'envoi de notifications.
+
+## Déploiement
+
+Le projet a d'abord été déployé sur Render afin de tester son fonctionnement en environnement distant.
+
+Après cette phase de test, la version finale du site a été déployée sur **Hostinger avec une base de données MySQL**.
+
+## Installation en local
+
+### Prérequis
+
+* PHP
+* Composer
+* Node.js et npm
+* MySQL
+* Un serveur web compatible avec Laravel
+
+### Étapes d'installation
+
+1. Cloner le dépôt GitHub.
+
+2. Installer les dépendances PHP :
+
+   ```bash
+   composer install
+   ```
+
+3. Copier le fichier `.env.example` vers `.env`.
+
+4. Configurer les paramètres de connexion à MySQL dans le fichier `.env`.
+
+5. Générer la clé de l'application :
+
+   ```bash
+   php artisan key:generate
+   ```
+
+6. Exécuter les migrations :
+
+   ```bash
+   php artisan migrate
+   ```
+
+7. Installer les dépendances frontend :
+
+   ```bash
+   npm install
+   ```
+
+8. Compiler les ressources frontend :
+
+   ```bash
+   npm run build
+   ```
+
+9. Démarrer le serveur local :
+
+   ```bash
+   php artisan serve
+   ```
+
+## Sécurité
+
+* Ne pas publier le fichier `.env`.
+* Ne pas exposer les mots de passe, les clés d'API ou les identifiants de connexion.
+* Conserver les informations sensibles dans les variables d'environnement.
+* Vérifier les fichiers importés par les utilisateurs avant leur traitement.
+* Contrôler les droits d'accès aux fonctionnalités d'administration.
+
+## Statut du projet
+
+Version finale déployée sur Hostinger avec MySQL. Le code source est disponible sur GitHub.
+
+## Auteur
+
+**SIALOU TIBANA LARISSA**
+
+Développeuse d'applications et de sites web.
