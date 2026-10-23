@@ -38,7 +38,7 @@
             </tr>
         @endforeach
     </tbody>
-
+   </table>
 @if(session('success'))
     <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
         {{ session('success') }}
@@ -75,9 +75,28 @@
     </button>
 </form>
 
+<div class="bg-white shadow p-4 mt-6 rounded">
+    <h3 class="font-bold mb-4">Envoyer un message au client</h3>
 
+    <form method="POST" action="{{ route('admin.orders.message', $order->id) }}">
+        @csrf
 
-</table>
+        <div class="mb-3">
+            <label>Sujet</label>
+            <input type="text" name="subject" class="border p-2 w-full">
+        </div>
+
+        <div class="mb-3">
+            <label>Message</label>
+            <textarea name="content" class="border p-2 w-full" required></textarea>
+        </div>
+
+        <button type="submit"
+            class="bg-orange-500 text-white px-4 py-2 rounded">
+            Envoyer
+        </button>
+    </form>
+</div>
 
 <a href="{{ route('admin.orders') }}"
    class="inline-block mt-6 bg-gray-500 text-white px-4 py-2 rounded">

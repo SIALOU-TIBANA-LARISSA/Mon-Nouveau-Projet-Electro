@@ -13,6 +13,7 @@ class="bg-green-500 text-white px-4 py-2 rounded mb-4 inline-block">
 <tr>
     <th class="p-3">Nom</th>
     <th class="p-3">Prix</th>
+    <th class="p-3">Stock</th>
     <th class="p-3">Actions</th>
 </tr>
 </thead>
@@ -22,6 +23,19 @@ class="bg-green-500 text-white px-4 py-2 rounded mb-4 inline-block">
 <tr class="border-t">
     <td class="p-3">{{ $product->name }}</td>
     <td class="p-3">{{ $product->price }} FCFA</td>
+
+     <td class="p-3">
+@if($product->stock_quantity > 10)
+<span class="text-green-600 font-semibold">✔ En stock</span>
+
+@elseif($product->stock_quantity > 0)
+<span class="text-yellow-600 font-semibold">⚠ Stock faible</span>
+
+@else
+<span class="text-red-600 font-semibold">❌ Rupture</span>
+@endif
+</td>
+
     <td class="p-3 flex gap-2">
 
         <a href="{{ route('admin.products.edit', $product) }}"

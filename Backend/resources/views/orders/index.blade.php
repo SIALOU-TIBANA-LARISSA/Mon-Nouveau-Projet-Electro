@@ -11,20 +11,14 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-    const token = localStorage.getItem("auth_token");
-
-    if (!token) {
-        window.location.href = "/login";
-        return;
-    }
 
     try {
-        const res = await fetch("/api/orders", {
-            headers: {
-                "Authorization": "Bearer " + token,
-                "Accept": "application/json"
-            }
-        });
+        const res = await fetch("/orders-data", {
+    headers: {
+        "Accept": "application/json"
+    },
+    credentials: "include"
+});
 
         const orders = await res.json();
         const container = document.getElementById("ordersContainer");

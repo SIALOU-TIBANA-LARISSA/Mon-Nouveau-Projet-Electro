@@ -3,13 +3,13 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 py-8">
 
-    <div class="flex gap-8">
+    <div class="flex flex-col lg:flex-row gap-8">
 
         {{-- MENU GAUCHE --}}
-        <aside class="w-64 bg-white border rounded-lg p-4">
+        <aside class="w-full lg:w-64 bg-white border rounded-lg p-4">
             <h2 class="font-bold text-lg mb-4">Votre compte</h2>
 
-            <ul class="space-y-3 text-gray-700">
+            <ul class="space-y-3 text-gray-700 text-sm">
 
                 <li>
                     <a href="{{ route('orders.index') }}"
@@ -43,12 +43,6 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('account.followed-sellers') }}" class="block px-2 py-1 hover:text-orange-500">
-                        Vendeurs suivis
-                    </a>
-                </li>
-
-                <li>
                     <a href="{{ route('account.recent') }}" class="block px-2 py-1 hover:text-orange-500">
                         Vu récemment
                     </a>
@@ -65,12 +59,11 @@
 
                 <div class="bg-white border rounded-lg p-4">
                     <h3 class="font-semibold mb-2">INFORMATIONS PERSONNELLES</h3>
-                    @auth
+
+                    @if(auth()->check())
                      <p class="font-medium">{{ auth()->user()->name }}</p>
                      <p class="text-gray-600">{{ auth()->user()->email }}</p>
-                    @else
-                    <p class="text-gray-500">Utilisateur non connecté</p>
-                    @endauth
+                    @endif
    
                 </div>
 
@@ -79,7 +72,29 @@
                         ADRESSES
                         <a href="{{ route('account.addresses') }}">✏️</a>
                     </h3>
-                    <p class="text-gray-600">Adresse par défaut</p>
+                    @auth
+    @if(auth()->user()->address)
+
+        <p class="font-medium">
+            {{ auth()->user()->name }}
+        </p>
+
+        <p class="text-gray-600">
+            {{ auth()->user()->address }}
+        </p>
+
+        <p class="text-gray-600">
+            {{ auth()->user()->district }}, {{ auth()->user()->city }}
+        </p>
+
+        <p class="text-gray-600">
+            {{ auth()->user()->phone }}
+        </p>
+
+    @else
+        <p class="text-gray-500">Aucune adresse enregistrée</p>
+    @endif
+@endauth
                 </div>
 
                 <div class="bg-white border rounded-lg p-4">

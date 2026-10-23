@@ -19,14 +19,6 @@
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
 
-    // 🔐 Token API
-    const token = localStorage.getItem("auth_token");
-    if (!token) {
-        window.location.href = "/login";
-        return;
-    }
-
-    // 🔑 ID commande depuis l'URL
     const params = new URLSearchParams(window.location.search);
     const orderId = params.get("id");
 
@@ -39,15 +31,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const response = await fetch(`/api/orders/${orderId}`, {
-            headers: {
-                "Authorization": "Bearer " + token,
-                "Accept": "application/json"
-            }
+        const response = await fetch(`/order-detail-data/${orderId}`, {
+            credentials: "include"
         });
 
         if (!response.ok) {
-            throw new Error("Erreur API");
+            throw new Error("Erreur serveur");
         }
 
         const order = await response.json();
@@ -79,13 +68,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <img
                             src="${item.product.main_image_url}"
                             class="w-20 h-20 object-cover rounded"
-                            alt="${item.product.name}"
                         >
-
                         <div>
                             <p class="font-semibold">${item.product.name}</p>
                             <p>Quantité : ${item.quantity}</p>
-                            <p>Prix : ${item.price} FCFA</p>
+                            <p>Prix : ${item.unit_price} FCFA</p>
                         </div>
                     </div>
                 `;
@@ -97,7 +84,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
         container.innerHTML =
             "<p class='text-red-500'>Impossible de charger les détails de la commande.</p>";
-        console.error(error);
     }
 });
 </script>

@@ -9,6 +9,7 @@
             <th class="p-3 text-left">ID</th>
             <th class="p-3 text-left">Nom</th>
             <th class="p-3 text-left">Email</th>
+            <th class="p-3 text-left">Numéro</th> 
             <th class="p-3 text-left">Date</th>
         </tr>
     </thead>
@@ -18,6 +19,7 @@
                 <td class="p-3">{{ $user->id }}</td>
                 <td class="p-3">{{ $user->name }}</td>
                 <td class="p-3">{{ $user->email }}</td>
+                <td class="p-3">{{ $user->phone ?? '-' }}</td> 
                 <td class="p-3">{{ $user->created_at }}</td>
             </tr>
         @endforeach

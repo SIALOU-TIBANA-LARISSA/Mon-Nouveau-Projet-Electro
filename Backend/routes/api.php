@@ -12,7 +12,6 @@ use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\Api\AddressController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | ROUTES PUBLIQUES
@@ -22,6 +21,13 @@ use App\Http\Controllers\Api\AddressController;
 // Auth
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
+
+Route::post('/auth/verify-otp', [AuthController::class, 'verifyOtp']);
+
+Route::post('/auth/resend-otp', [AuthController::class, 'resendOtp']);
+
+Route::post('/auth/forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('/auth/reset-password', [AuthController::class, 'resetPassword']);
 
 // Création commande (checkout interne)
 Route::post('/checkout', [CheckoutController::class, 'process']);
@@ -46,37 +52,11 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id_or_slug}', [CategoryController::class, 'show']);
 Route::get('/categories/{id_or_slug}/products', [CategoryController::class, 'products']);
 
-// Panier
-Route::get('/cart', [CartController::class, 'show']);
-Route::post('/cart/add', [CartController::class, 'add']);
-Route::put('/cart/update/{item_id}', [CartController::class, 'update']);
-Route::delete('/cart/remove/{item_id}', [CartController::class, 'remove']);
 
 /*
 |--------------------------------------------------------------------------
 | ROUTES PROTÉGÉES
 |--------------------------------------------------------------------------
 */
-Route::middleware('auth:sanctum')->group(function () {
-
-    Route::post('/auth/logout', [AuthController::class, 'logout']);
-    Route::get('/auth/me', [AuthController::class, 'me']);
-
-    // Commandes
-    Route::post('/orders', [OrderController::class, 'placeOrder']);
-    Route::get('/orders', [OrderController::class, 'listOrders']);
-
-    Route::get('/orders/{order}', function (\App\Models\Order $order) {
-    abort_if($order->user_id !== auth()->id(), 403);
-
-    return response()->json(
-        $order->load('items.product')
-    );
-});
-
-
-    // Stripe
-    Route::post('/payment/stripe/checkout', [StripeController::class, 'createCheckoutSession']);
-});
 
 Route::get('/products/{slug}', [ProductController::class, 'show']);

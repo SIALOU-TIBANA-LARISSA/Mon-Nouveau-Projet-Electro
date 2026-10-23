@@ -32,6 +32,8 @@
     </div>
 
 </div>
+@endsection
+
 
 {{-- cart.js DOIT être chargé UNE SEULE FOIS dans app.blade.php --}}
 <script>
@@ -39,75 +41,110 @@ document.addEventListener("DOMContentLoaded", loadCart);
 
 function loadCart() {
 
-    let cart = getCart(); // vient de cart.js
-
     let container = document.getElementById("cart-items");
-    let emptyMessage = document.getElementById("cart-empty");
-    let totalContainer = document.getElementById("cart-total");
-    let checkoutBtn = document.getElementById("checkout-btn");
 
-    container.innerHTML = "";
+    // 🔥 IMPORTANT : si on n'est pas sur la page panier, on arrête
+    if (!container) return;
 
-    // 🔹 PANIER VIDE
-    if (cart.length === 0) {
-        emptyMessage.classList.remove("hidden");
-        totalContainer.classList.add("hidden");
-        checkoutBtn.classList.add("hidden");
-        return;
-    }
+    fetch('/cart-data', {
+        credentials: 'same-origin'
+    })
+    .then(res => {
+        if (!res.ok) throw new Error();
+        return res.json();
+    })
+    .then(data => {
 
-    emptyMessage.classList.add("hidden");
+        let container = document.getElementById("cart-items");
+        let emptyMessage = document.getElementById("cart-empty");
+        let totalContainer = document.getElementById("cart-total");
+        let checkoutBtn = document.getElementById("checkout-btn");
 
-    let total = 0;
+        container.innerHTML = "";
 
-    cart.forEach(item => {
+        if (!data.items || data.items.length === 0) {
+            emptyMessage.classList.remove("hidden");
+            totalContainer.classList.add("hidden");
+            checkoutBtn.classList.add("hidden");
+            return;
+        }
 
-        const price = Number(item.price) || 0;
-        total += price * item.quantity;
+        emptyMessage.classList.add("hidden");
 
-        container.innerHTML += `
-            <div class="flex items-center justify-between border-b py-4">
+        let total = 0;
 
-                <div class="flex items-center gap-4">
-                    <img src="${item.image}" class="w-16 h-16 rounded shadow" alt="">
-                    <div>
-                        <p class="font-bold">${item.name}</p>
-                        <p class="text-gray-600">${price.toLocaleString()} FCFA</p>
-                    </div>
-                </div>
+        data.items.forEach(item => {
 
-                <div class="flex items-center gap-4">
+            const price = Number(item.unit_price);
+            total += price * item.quantity;
 
-                    <div class="flex items-center gap-2">
-                        <button
-                            onclick="decreaseQuantity('${item.id}')"
-                            class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300 font-bold"
-                        >−</button>
+            container.innerHTML += `
+                <div class="flex items-center justify-between border-b py-4">
 
-                        <span class="font-bold">${item.quantity}</span>
-
-                        <button
-                            onclick="increaseQuantity('${item.id}')"
-                            class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300 font-bold"
-                        >+</button>
+                    <div class="flex items-center gap-4">
+                        <img src="${item.product.main_image_url}" 
+                             class="w-16 h-16 rounded shadow" alt="">
+                        <div>
+                            <p class="font-bold">${item.product.name}</p>
+                            <p class="text-gray-600">${price.toLocaleString()} FCFA</p>
+                        </div>
                     </div>
 
-                    <button
-                        onclick="removeFromCart('${item.id}')"
-                        class="text-red-600 hover:text-red-800 font-bold"
-                    >
-                        X
-                    </button>
+                    <div class="flex items-center gap-4">
 
+                        <div class="flex items-center gap-3">
+
+    <button onclick="updateQuantity(${item.id}, -1)"
+            class="px-2 bg-gray-200 rounded">-</button>
+
+    <span class="font-bold">${item.quantity}</span>
+
+    <button onclick="updateQuantity(${item.id}, 1)"
+            class="px-2 bg-gray-200 rounded">+</button>
+
+    <button onclick="removeItem(${item.id})"
+            class="text-red-500 font-bold ml-4">X</button>
+
+</div>
+
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        });
+
+        document.getElementById("total-amount").innerText = total.toLocaleString();
+        totalContainer.classList.remove("hidden");
+        checkoutBtn.classList.remove("hidden");
+
+    })
+    .catch(() => {
+        document.getElementById("cart-empty").classList.remove("hidden");
     });
+}
 
-    document.getElementById("total-amount").innerText = total.toLocaleString();
-    totalContainer.classList.remove("hidden");
-    checkoutBtn.classList.remove("hidden");
+function updateQuantity(itemId, change) {
+
+    fetch(`/cart-update/${itemId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ change: change })
+    })
+    .then(res => res.json())
+    .then(() => loadCart());
+}
+
+function removeItem(itemId) {
+
+    fetch(`/cart-remove/${itemId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        }
+    })
+    .then(res => res.json())
+    .then(() => loadCart());
 }
 </script>
-
-@endsection

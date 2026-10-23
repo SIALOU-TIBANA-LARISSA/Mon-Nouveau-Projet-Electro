@@ -168,13 +168,13 @@ public function publicOrder(Request $request)
     $user = User::where('email', $data['email'])->first();
 
     // Si non, on crée un compte automatique
-    if (!$user) {
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt('electro123'), // mot de passe généré automatiquement
-        ]);
-    }
+    $user = auth()->user();
+
+if (!$user) {
+    return response()->json([
+        'message' => 'Vous devez être connecté pour commander.'
+    ], 401);
+}
 
     // 3️⃣ Création de la commande
     $order = Order::create([

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -24,5 +25,25 @@ class OrderController extends Controller
 
     return view('orders.show', compact('order'));
     }
+
+public function store(Request $request)
+{
+    $order = Order::create([
+        'user_id' => auth()->id(),
+        'status' => 'pending',
+        'total' => 0, // on ajustera plus tard
+    ]);
+
+    // Email au client
+    Mail::raw(
+        "Bonjour " . auth()->user()->name . ",\n\nVotre commande #{$order->id} a été enregistrée avec succès.",
+        function ($message) use ($order) {
+            $message->to(auth()->user()->email)
+                    ->subject("Confirmation de votre commande #{$order->id}");
+        }
+    );
+
+    return redirect()->route('merci');
+}
 }
 

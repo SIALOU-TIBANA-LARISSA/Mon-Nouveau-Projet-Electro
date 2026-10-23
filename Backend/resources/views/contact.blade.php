@@ -71,15 +71,6 @@
                 </p>
             </div>
 
-            <!-- Moyens de paiement -->
-            <div class="pt-4">
-                <h3 class="font-semibold mb-2">💳 Moyens de paiement</h3>
-                <p class="text-gray-600 text-sm">
-                    Orange Money, MTN Mobile Money, Moov Money, Flooz,<br>
-                    Visa et Mastercard.
-                </p>
-            </div>
-
             <!-- Réseaux sociaux -->
             <div class="pt-4">
                 <h3 class="font-semibold mb-2">🌐 Réseaux sociaux</h3>
@@ -88,7 +79,7 @@
                        class="text-green-600 font-semibold hover:underline">
                         WhatsApp
                     </a>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">
+                    <a href="https://www.facebook.com/himprimerie" target="_blank" class="text-blue-600 font-semibold hover:underline">
                         Facebook
                     </a>
                 </div>

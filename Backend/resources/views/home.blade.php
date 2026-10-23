@@ -10,13 +10,12 @@
 <!-- IMAGES FLOTTANTES (ARRIÈRE-PLAN) -->
 <div class="floating-images">
 
-    <img src="{{ asset('images/products/deco-noel.avif') }}" class="float float-1">
-    <img src="{{ asset('images/products/vase.avif') }}" class="float float-2">
-    <img src="{{ asset('images/products/boite-a-bijoux.avif') }}" class="float float-3">
-    <img src="{{ asset('images/products/mug-blanc.avif') }}" class="float float-4">
-    <img src="{{ asset('images/products/sticker-vinyle-rond.avif') }}" class="float float-5">
-     <img src="{{ asset('images/products/coque-iphone-15-pro.avif') }}" class="float float-6">
-
+    <img src="{{ asset('images/products/deco-noel.png') }}" class="float float-1">
+    <img src="{{ asset('images/products/vase.png') }}" class="float float-2">
+    <img src="{{ asset('images/products/presentoir-bijoux.png') }}" class="float float-3">
+    <img src="{{ asset('images/products/mug-blanc.png') }}" class="float float-4">
+    <img src="{{ asset('images/products/sticker-vinyle-rond.png') }}" class="float float-5">
+     <img src="{{ asset('images/products/coque-iphone-15-pro.png') }}" class="float float-6">
 </div>
 
 
@@ -38,57 +37,160 @@
 </a>
 
 
+<!-- SECTION SLIDER PROMOTION -->
+<div class="mt-12">
+    <div class="max-w-4xl mx-auto">
+
+        <div id="promoCarousel"
+             class="carousel slide"
+             data-bs-ride="carousel"
+             data-bs-interval="4000">
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ asset('images/slider/slide1.avif') }}" class="slider-img" alt="Boite à bijoux">
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('images/slider/slide2.avif') }}" class="slider-img" alt="Décoration Noël">
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('images/slider/slide3.avif') }}" class="slider-img" alt="Trophée personnalisé">
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('images/slider/slide4.avif') }}" class="slider-img" alt="Vase décoratif">
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('images/slider/slide5.avif') }}" class="slider-img" alt="Puzzle personnalisé">
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ asset('images/slider/slide6.avif') }}" class="slider-img" alt="Vase décoratif">
+            </div>
+
+        </div>
+
+        <!-- Flèches -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+
+    </div>
+</div>
 </section>
 
-<!-- ================= PRODUITS VEDETTES ================= -->
-<section class="py-16 bg-white">
+<!-- FIN SLIDER -->
 
-    <h2 class="text-2xl font-bold text-center mb-10">
+
+<!-- ================= PRODUITS VEDETTES ================= -->
+<section class="px-6 py-16">
+
+    <h2 class="text-2xl font-bold text-center mb-12">
         Nos produits en vedette
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
 
-        <div class="bg-white rounded-lg shadow p-4 text-center
-            transition transform duration-300
-            hover:-translate-y-2 hover:shadow-xl
-            active:scale-95 cursor-pointer">
+        <!-- ===== LIGNE 1 : PRODUITS ===== -->
 
-            <img src="{{ asset('images/featured/mug-personnalise.avif') }}" class="h-48 mx-auto mb-4">
-            <h3 class="font-semibold">Mug personnalisé</h3>
-            <p class="text-orange-500 font-bold">3 500 FCFA</p>
+ <a href="{{ route('produit.slug', 'mug-blanc-personnalise') }}" 
+   class="block">
+
+    <div class="bg-white rounded-xl shadow-md p-4 text-center
+        transition-all duration-500
+        hover:shadow-2xl hover:-translate-y-2 hover:bg-orange-50">
+
+        <div class="overflow-hidden rounded-lg mb-4">
+            <img src="{{ asset('images/featured/mug-personnalise.avif') }}"
+                 class="h-48 mx-auto transition-transform duration-500 hover:scale-110">
         </div>
 
-        <div class="bg-white rounded-lg shadow p-4 text-center
-            transition transform duration-300
-            hover:-translate-y-2 hover:shadow-xl
-            active:scale-95 cursor-pointer">
+        <h3 class="font-semibold hover:text-orange-500 transition-colors duration-300">
+            Mug personnalisé
+        </h3>
 
-            <img src="{{ asset('images/featured/coque.avif') }}" class="h-48 mx-auto mb-4">
-            <h3 class="font-semibold">Coque iPhone</h3>
-            <p class="text-orange-500 font-bold">6 000 FCFA</p>
-        </div>
+        <p class="text-orange-500 font-bold mb-3">
+            3 500 FCFA
+        </p>
 
-        <div class="bg-white rounded-lg shadow p-4 text-center
-            transition transform duration-300
-            hover:-translate-y-2 hover:shadow-xl
-            active:scale-95 cursor-pointer">
-
-            <img src="{{ asset('images/featured/cadre.avif') }}" class="h-48 mx-auto mb-4">
-            <h3 class="font-semibold">Cadre-photo</h3>
-            <p class="text-orange-500 font-bold">4 000 FCFA</p>
-        </div>
+        <!-- Bouton visible mais discret -->
+        <span class="inline-block bg-orange-500 text-white px-4 py-2 rounded-full text-sm
+                     opacity-90 hover:opacity-100 transition">
+            Voir le produit
+        </span>
 
     </div>
 
-</section>
+</a>
 
-<!-- ================= CARTES AVANTAGES ================= -->
-<section class="bg-gray-100 py-16">
+<a href="{{ route('produit.slug', 'coque-iphone-15-pro') }}" 
+   class="block">
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+    <div class="bg-white rounded-xl shadow-md p-4 text-center
+        transition-all duration-500
+        hover:shadow-2xl hover:-translate-y-2 hover:bg-orange-50">
 
-        <div class="bg-white rounded-xl shadow p-8 text-center
+        <div class="overflow-hidden rounded-lg mb-4">
+            <img src="{{ asset('images/featured/coque.avif') }}"
+                 class="h-48 mx-auto transition-transform duration-500 hover:scale-110">
+        </div>
+
+        <h3 class="font-semibold hover:text-orange-500 transition-colors duration-300">
+            Coque iPhone
+        </h3>
+
+        <p class="text-orange-500 font-bold mb-3">
+            6 000 FCFA
+        </p>
+
+        <span class="inline-block bg-orange-500 text-white px-4 py-2 rounded-full text-sm
+                     opacity-90 hover:opacity-100 transition">
+            Voir le produit
+        </span>
+
+    </div>
+
+</a>
+
+<a href="{{ route('produit.slug', 'cadre-photo') }}" 
+   class="block">
+
+    <div class="bg-white rounded-xl shadow-md p-4 text-center
+        transition-all duration-500
+        hover:shadow-2xl hover:-translate-y-2 hover:bg-orange-50">
+
+        <div class="overflow-hidden rounded-lg mb-4">
+            <img src="{{ asset('images/featured/cadre.avif') }}"
+                 class="h-48 mx-auto transition-transform duration-500 hover:scale-110">
+        </div>
+
+        <h3 class="font-semibold hover:text-orange-500 transition-colors duration-300">
+            Cadre-photo
+        </h3>
+
+        <p class="text-orange-500 font-bold mb-3">
+            4 000 FCFA
+        </p>
+
+        <span class="inline-block bg-orange-500 text-white px-4 py-2 rounded-full text-sm
+                     opacity-90 hover:opacity-100 transition">
+            Voir le produit
+        </span>
+
+    </div>
+
+</a>
+
+        <!-- ===== LIGNE 2 : CARTES ===== -->
+
+        <div class="bg-white rounded-xl shadow p-8 text-center mt-10
             transition transform duration-300
             hover:-translate-y-2 hover:shadow-xl
             active:scale-95 cursor-pointer">
@@ -100,7 +202,7 @@
             </p>
         </div>
 
-        <div class="bg-white rounded-xl shadow p-8 text-center
+        <div class="bg-white rounded-xl shadow p-8 text-center mt-10
             transition transform duration-300
             hover:-translate-y-2 hover:shadow-xl
             active:scale-95 cursor-pointer">
@@ -112,7 +214,7 @@
             </p>
         </div>
 
-        <div class="bg-white rounded-xl shadow p-8 text-center
+        <div class="bg-white rounded-xl shadow p-8 text-center mt-10
             transition transform duration-300
             hover:-translate-y-2 hover:shadow-xl
             active:scale-95 cursor-pointer">
@@ -140,22 +242,20 @@
 
 .float {
     position: absolute;
-    width: 38px !important;      /* taille équilibrée */
+    width: 110px !important;     /* taille visible */
     height: auto !important;
-    opacity: 0.9 !important;     /* couleurs visibles */
-    filter: blur(0.4px);         /* effet arrière-plan */
-    mix-blend-mode: multiply;    /* fusion avec la bannière */
+    opacity: 1 !important;       /* couleur normale */
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.25));
     animation: floatSlow 8s ease-in-out infinite;
 }
 
 
-/* positions */
-.float-1 { top: 10%; left: 6%; }
-.float-2 { bottom: 15%; left: 12%; }
-.float-3 { top: 18%; right: 10%; }
-.float-4 { bottom: 12%; right: 18%; }
-.float-5 { top: 55%; right: 40%; width: 46px !important; }
-.float-6 { top: 4%; left: 42%; width: 50px !important; }
+.float-1 { top: 8%; left: 5%; }
+.float-2 { bottom: 12%; left: 8%; }
+.float-3 { top: 15%; right: 8%; }
+.float-4 { bottom: 10%; right: 15%; }
+.float-5 { top: 50%; right: 38%; width: 120px !important; }
+.float-6 { top: 5%; left: 40%; width: 130px !important; }
 
 
 
@@ -183,6 +283,31 @@
 }
 </style>
 
+<style>
+.carousel-inner {
+    height: 380px;
+    overflow: hidden;
+    background: transparent;
+}
+
+.carousel-item {
+    height: 380px;
+}
+
+.slider-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .carousel-inner,
+    .carousel-item {
+        height: 220px;
+    }
+}
+</style>
 
 
 

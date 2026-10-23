@@ -23,6 +23,10 @@ class Product extends Model
         'is_published',
         'main_image_url',
         'sku',
+        'stl_path',
+        'svg_path',
+        'dxf_path',
+        'promo_price',
     ];
 
     // Relation : un produit appartient à une catégorie
@@ -36,6 +40,22 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+   public function examples()
+{
+    return $this->hasMany(\App\Models\ProductExample::class);
+}
+
+public function favorites()
+{
+    return $this->hasMany(\App\Models\Favorite::class);
+}
+
+public function reviews()
+{
+return $this->hasMany(\App\Models\Review::class);
+}
+
 
 }
 

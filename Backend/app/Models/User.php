@@ -23,11 +23,17 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role_id', // ⬅️ AJOUTÉ POUR L'ASSIGNATION EN MASSE
-    ];
+    'name',
+    'email',
+    'password',
+    'role_id',
+    'address',
+    'city',
+    'district',
+    'phone',
+    'newsletter',
+    'phone_verified',
+];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -61,6 +67,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders()
 {
     return $this->hasMany(Order::class);
+}
+  
+public function messages()
+{
+    return $this->hasMany(\App\Models\Message::class);
+}
+
+public function favorites()
+{
+    return $this->hasMany(\App\Models\Favorite::class);
 }
 
 }
